@@ -57,5 +57,18 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="2016.01.01" />
+    <Folder Include="2016.01.01\Indexes" />
+    <Folder Include="2016.01.01\Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="2016.01.01\Indexes\IX_FK_tblPeople_FamilyId_tblFamilies_Id.sql" />
+    <Build Include="2016.01.01\Indexes\IX_FK_tblPeople_GenderId_tblGenders_Id.sql" />
+    <Build Include="2016.01.01\Tables\tblFamilies.sql" />
+    <Build Include="2016.01.01\Tables\tblGenders.sql" />
+    <Build Include="2016.01.01\Tables\tblPeople.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="2016.01.01\_build.txt" />
   </ItemGroup>
 </Project>
