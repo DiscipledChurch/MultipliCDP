@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>ChDS.Database</Name>
+    <Name>Multipli.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{fba8dbae-150f-47e7-a44b-14dc743bd996}</ProjectGuid>
+    <ProjectGuid>{87366661-47f5-439d-a7b5-8956df23f3fc}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>ChDS.Database</RootNamespace>
-    <AssemblyName>ChDS.Database</AssemblyName>
+    <RootNamespace>Multipli.Database</RootNamespace>
+    <AssemblyName>Multipli.Database</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>

@@ -7,7 +7,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ChDS
+namespace Multipli
 {
     public class Startup
     {
