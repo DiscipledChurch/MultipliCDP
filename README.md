@@ -1,2 +1,2 @@
-# ChDS
-Church Discipleship System
+# Multipli ChMS
+Multipli Church Management System
