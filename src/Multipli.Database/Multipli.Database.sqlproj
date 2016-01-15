@@ -60,6 +60,7 @@
     <Folder Include="2016.01.01" />
     <Folder Include="2016.01.01\Indexes" />
     <Folder Include="2016.01.01\Tables" />
+    <Folder Include="2016.01.01\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="2016.01.01\Indexes\IX_FK_tblPeople_FamilyId_tblFamilies_Id.sql" />
@@ -67,6 +68,8 @@
     <Build Include="2016.01.01\Tables\tblFamilies.sql" />
     <Build Include="2016.01.01\Tables\tblGenders.sql" />
     <Build Include="2016.01.01\Tables\tblPeople.sql" />
+    <Build Include="2016.01.01\Stored Procedures\tblFamilies_InsertFamily.sql" />
+    <Build Include="2016.01.01\Stored Procedures\tblPeople_InsertPerson.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2016.01.01\_build.txt" />

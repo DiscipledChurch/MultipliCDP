@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D781F6BD-E
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Multipli.UnitTests", "test\Multipli.UnitTests\Multipli.UnitTests.xproj", "{F3A98574-C743-4367-B2FF-64B33E4F36AD}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Multipli.Data", "src\Multipli.Data\Multipli.Data.xproj", "{57351913-95FA-4EE2-AF12-96859CE57B65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{F3A98574-C743-4367-B2FF-64B33E4F36AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3A98574-C743-4367-B2FF-64B33E4F36AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3A98574-C743-4367-B2FF-64B33E4F36AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57351913-95FA-4EE2-AF12-96859CE57B65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57351913-95FA-4EE2-AF12-96859CE57B65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57351913-95FA-4EE2-AF12-96859CE57B65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57351913-95FA-4EE2-AF12-96859CE57B65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,5 +55,6 @@ Global
 		{A78046B2-B757-4EC1-9E73-01B5F105C07C} = {948776DE-AA11-4BB3-A604-D3A4877B061A}
 		{87366661-47F5-439D-A7B5-8956DF23F3FC} = {948776DE-AA11-4BB3-A604-D3A4877B061A}
 		{F3A98574-C743-4367-B2FF-64B33E4F36AD} = {D781F6BD-ECE3-4A57-83A1-A7BFD70BF341}
+		{57351913-95FA-4EE2-AF12-96859CE57B65} = {948776DE-AA11-4BB3-A604-D3A4877B061A}
 	EndGlobalSection
 EndGlobal
