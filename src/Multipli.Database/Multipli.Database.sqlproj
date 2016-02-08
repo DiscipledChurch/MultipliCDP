@@ -70,6 +70,10 @@
     <Build Include="2016.01.01\Tables\tblPeople.sql" />
     <Build Include="2016.01.01\Stored Procedures\tblFamilies_InsertFamily.sql" />
     <Build Include="2016.01.01\Stored Procedures\tblPeople_InsertPerson.sql" />
+    <Build Include="2016.01.01\Tables\tblOrganizations.sql" />
+    <Build Include="2016.01.01\Tables\tblRoles.sql" />
+    <Build Include="2016.01.01\Tables\tblAccounts.sql" />
+    <Build Include="2016.01.01\Tables\tblAccountRoles.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2016.01.01\_build.txt" />
