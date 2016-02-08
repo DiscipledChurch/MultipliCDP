@@ -5,7 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="988c3020e2c842b3924cb9de23907a04" Name="Diagram1" ZoomLevel="115" >
-        <EntityTypeShape EntityType="Model.Organization" Width="1.5" PointX="61.625" PointY="51.75" />
+        <EntityTypeShape EntityType="Model.Organization" Width="1.5" PointX="62.75" PointY="42.75" />
+        <EntityTypeShape EntityType="Model.Location" Width="1.5" PointX="65.875" PointY="42.75" />
+        <AssociationConnector Association="Model.LocationOrganization" />
+        <EntityTypeShape EntityType="Model.PostalCode" Width="1.5" PointX="70.375" PointY="46.5" />
+        <EntityTypeShape EntityType="Model.Address" Width="1.5" PointX="68.125" PointY="46.5" />
+        <AssociationConnector Association="Model.AddressPostalCode" />
+        <EntityTypeShape EntityType="Model.PhoneNumber" Width="1.5" PointX="62.75" PointY="47" />
+        <EntityTypeShape EntityType="Model.PhoneNumberType" Width="1.5" PointX="60.25" PointY="47" />
+        <AssociationConnector Association="Model.PhoneNumberPhoneNumberType" />
+        <AssociationConnector Association="Model.OrganizationPhoneNumber" />
+        <AssociationConnector Association="Model.LocationPhoneNumber" />
+        <EntityTypeShape EntityType="Model.AddressType" Width="1.5" PointX="70.375" PointY="44.5" />
+        <AssociationConnector Association="Model.AddressAddressType" />
+        <AssociationConnector Association="Model.OrganizationAddress" />
+        <AssociationConnector Association="Model.LocationAddress" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
