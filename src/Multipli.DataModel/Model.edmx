@@ -141,6 +141,7 @@
           <Property Name="OrganizationId" Type="Int64" Nullable="true" />
           <NavigationProperty Name="Location" Relationship="Model.LocationAddress" FromRole="Address" ToRole="Location" />
           <Property Name="LocationId" Type="Int64" Nullable="true" />
+          <Property Name="Preferred" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="AddressPostalCode">
           <End Type="Model.Address" Role="Address" Multiplicity="*" />
