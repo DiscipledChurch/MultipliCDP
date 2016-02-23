@@ -20,6 +20,17 @@
         <AssociationConnector Association="Model.AddressAddressType" />
         <AssociationConnector Association="Model.OrganizationAddress" />
         <AssociationConnector Association="Model.LocationAddress" />
+        <EntityTypeShape EntityType="Model.Family" Width="1.5" PointX="69.25" PointY="40.75" />
+        <EntityTypeShape EntityType="Model.People" Width="1.5" PointX="72.25" PointY="40.75" />
+        <AssociationConnector Association="Model.FamilyLocation" />
+        <AssociationConnector Association="Model.PeopleFamily" />
+        <EntityTypeShape EntityType="Model.Relationship" Width="1.5" PointX="75" PointY="40.75" />
+        <EntityTypeShape EntityType="Model.RelationshipType" Width="1.5" PointX="77.875" PointY="40.75" />
+        <AssociationConnector Association="Model.RelationshipRelationshipType" />
+        <AssociationConnector Association="Model.RelationshipPeople" />
+        <AssociationConnector Association="Model.RelationshipPeople1" />
+        <EntityTypeShape EntityType="Model.GenderType" Width="1.5" PointX="72.25" PointY="38" />
+        <AssociationConnector Association="Model.PeopleGenderType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

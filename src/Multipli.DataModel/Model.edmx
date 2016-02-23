@@ -52,6 +52,35 @@
             <End Role="Location" EntitySet="Locations" />
             <End Role="Address" EntitySet="Addresses" />
           </AssociationSet>
+          <EntitySet Name="Families" EntityType="Model.Family" />
+          <EntitySet Name="People" EntityType="Model.People" />
+          <AssociationSet Name="FamilyLocation" Association="Model.FamilyLocation">
+            <End Role="Family" EntitySet="Families" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="PeopleFamily" Association="Model.PeopleFamily">
+            <End Role="People" EntitySet="People" />
+            <End Role="Family" EntitySet="Families" />
+          </AssociationSet>
+          <EntitySet Name="Relationships" EntityType="Model.Relationship" />
+          <EntitySet Name="RelationshipTypes" EntityType="Model.RelationshipType" />
+          <AssociationSet Name="RelationshipRelationshipType" Association="Model.RelationshipRelationshipType">
+            <End Role="Relationship" EntitySet="Relationships" />
+            <End Role="RelationshipType" EntitySet="RelationshipTypes" />
+          </AssociationSet>
+          <AssociationSet Name="RelationshipPeople" Association="Model.RelationshipPeople">
+            <End Role="Relationship" EntitySet="Relationships" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="RelationshipPeople1" Association="Model.RelationshipPeople1">
+            <End Role="Relationship" EntitySet="Relationships" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <EntitySet Name="GenderTypes" EntityType="Model.GenderType" />
+          <AssociationSet Name="PeopleGenderType" Association="Model.PeopleGenderType">
+            <End Role="People" EntitySet="People" />
+            <End Role="GenderType" EntitySet="GenderTypes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Organization">
           <Key>
@@ -76,6 +105,7 @@
           <Property Name="CustomUrl" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
           <NavigationProperty Name="PhoneNumbers" Relationship="Model.LocationPhoneNumber" FromRole="Location" ToRole="PhoneNumber" />
           <NavigationProperty Name="Addresses" Relationship="Model.LocationAddress" FromRole="Location" ToRole="Address" />
+          <NavigationProperty Name="Families" Relationship="Model.FamilyLocation" FromRole="Location" ToRole="Family" />
         </EntityType>
         <Association Name="LocationOrganization">
           <End Type="Model.Location" Role="Location" Multiplicity="*" />
@@ -222,6 +252,130 @@
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Family">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Location" Relationship="Model.FamilyLocation" FromRole="Family" ToRole="Location" />
+          <Property Name="LocationId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="Model.PeopleFamily" FromRole="Family" ToRole="People" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Family" Relationship="Model.PeopleFamily" FromRole="People" ToRole="Family" />
+          <Property Name="FamilyId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Relationships" Relationship="Model.RelationshipPeople" FromRole="People" ToRole="Relationship" />
+          <NavigationProperty Name="Relationships1" Relationship="Model.RelationshipPeople1" FromRole="People" ToRole="Relationship" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="75" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="75" Unicode="true" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="GenderType" Relationship="Model.PeopleGenderType" FromRole="People" ToRole="GenderType" />
+          <Property Name="GenderTypeId" Type="Int16" Nullable="true" />
+        </EntityType>
+        <Association Name="FamilyLocation">
+          <End Type="Model.Family" Role="Family" Multiplicity="*" />
+          <End Type="Model.Location" Role="Location" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Family">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PeopleFamily">
+          <End Type="Model.People" Role="People" Multiplicity="*" />
+          <End Type="Model.Family" Role="Family" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="FamilyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="RelationshipType" Relationship="Model.RelationshipRelationshipType" FromRole="Relationship" ToRole="RelationshipType" />
+          <Property Name="RelationshipTypeId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="PersonOne" Relationship="Model.RelationshipPeople" FromRole="Relationship" ToRole="People" />
+          <Property Name="PersonOneId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="PersonTwo" Relationship="Model.RelationshipPeople1" FromRole="Relationship" ToRole="People" />
+          <Property Name="PersonTwoId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RelationshipType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="25" Unicode="true" />
+          <NavigationProperty Name="Relationships" Relationship="Model.RelationshipRelationshipType" FromRole="RelationshipType" ToRole="Relationship" />
+        </EntityType>
+        <Association Name="RelationshipRelationshipType">
+          <End Type="Model.Relationship" Role="Relationship" Multiplicity="*" />
+          <End Type="Model.RelationshipType" Role="RelationshipType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="RelationshipType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="RelationshipTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RelationshipPeople">
+          <End Type="Model.Relationship" Role="Relationship" Multiplicity="*" />
+          <End Type="Model.People" Role="People" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="PersonOneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RelationshipPeople1">
+          <End Type="Model.Relationship" Role="Relationship" Multiplicity="*" />
+          <End Type="Model.People" Role="People" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="PersonTwoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GenderType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="Model.PeopleGenderType" FromRole="GenderType" ToRole="People" />
+        </EntityType>
+        <Association Name="PeopleGenderType">
+          <End Type="Model.People" Role="People" Multiplicity="*" />
+          <End Type="Model.GenderType" Role="GenderType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GenderType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="GenderTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
