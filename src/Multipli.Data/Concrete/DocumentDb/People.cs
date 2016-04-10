@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Multipli.Data.Abstract;
 using Multipli.Data.Entities;
 
-namespace Multipli.Data.Concrete
+namespace Multipli.Data.Concrete.DocumentDb
 {
     public class People : IPeople
     {
