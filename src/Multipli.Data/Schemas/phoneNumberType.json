@@ -1,0 +1,24 @@
+﻿{
+  "id": "http://multipli.io/phoneNumberType#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PhoneNumberType",
+  "description": "A phone number type enum.",
+  "type": "object",
+  "properties": {
+    "id": {
+
+    },
+    "name": {
+      "type": "string",
+      "description": "This shows up in tooltips for the 'name' property."
+    },
+    "versions": {
+      "type": "array",
+      "description": "An array of version numbers.",
+      "minItems": 1,
+      "items": {
+        "type": "number"
+      }
+    }
+  }
+}
