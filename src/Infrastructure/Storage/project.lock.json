@@ -2,7 +2,29 @@
   "locked": false,
   "version": 2,
   "targets": {
-    ".NETFramework,Version=v4.5.1": {},
+    ".NETFramework,Version=v4.5.1": {
+      "Microsoft.Azure.DocumentDB/1.6.3": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.8"
+        },
+        "compile": {
+          "lib/net45/Microsoft.Azure.Documents.Client.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Azure.Documents.Client.dll": {}
+        }
+      },
+      "Newtonsoft.Json/6.0.8": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
     ".NETPlatform,Version=v5.4": {
       "Microsoft.CSharp/4.0.1-beta-23516": {
         "type": "package",
@@ -239,8 +261,52 @@
         }
       }
     },
-    ".NETFramework,Version=v4.5.1/win7-x86": {},
-    ".NETFramework,Version=v4.5.1/win7-x64": {},
+    ".NETFramework,Version=v4.5.1/win7-x86": {
+      "Microsoft.Azure.DocumentDB/1.6.3": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.8"
+        },
+        "compile": {
+          "lib/net45/Microsoft.Azure.Documents.Client.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Azure.Documents.Client.dll": {}
+        }
+      },
+      "Newtonsoft.Json/6.0.8": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5.1/win7-x64": {
+      "Microsoft.Azure.DocumentDB/1.6.3": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.8"
+        },
+        "compile": {
+          "lib/net45/Microsoft.Azure.Documents.Client.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Azure.Documents.Client.dll": {}
+        }
+      },
+      "Newtonsoft.Json/6.0.8": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
     ".NETPlatform,Version=v5.4/win7-x86": {
       "Microsoft.CSharp/4.0.1-beta-23516": {
         "type": "package",
@@ -727,6 +793,20 @@
     }
   },
   "libraries": {
+    "Microsoft.Azure.DocumentDB/1.6.3": {
+      "type": "package",
+      "sha512": "tmh0Zs2faH2/UQk35331NwkdoyBrAWl7gnoR3nyT4PMw7LNoGmN71BGEqJ0FDHV+gotKLfwk2Nigj0UtFulEiQ==",
+      "files": [
+        "build/Microsoft.Azure.DocumentDB.targets",
+        "build/native/DocumentDB.Spatial.Sql.dll",
+        "build/native/Microsoft.Azure.Documents.ServiceInterop.dll",
+        "lib/net45/Microsoft.Azure.Documents.Client.dll",
+        "lib/net45/Microsoft.Azure.Documents.Client.XML",
+        "Microsoft.Azure.DocumentDB.1.6.3.nupkg",
+        "Microsoft.Azure.DocumentDB.1.6.3.nupkg.sha512",
+        "Microsoft.Azure.DocumentDB.nuspec"
+      ]
+    },
     "Microsoft.CSharp/4.0.1-beta-23516": {
       "type": "package",
       "serviceable": true,
@@ -775,6 +855,30 @@
         "ref/wpa81/_._",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "Newtonsoft.Json/6.0.8": {
+      "type": "package",
+      "sha512": "7ut47NDedTW19EbL0JpFDYUP62fcuz27hJrehCDNajdCS5NtqL+E39+7Um3OkNc2wl2ym7K8Ln5eNuLus6mVGQ==",
+      "files": [
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netcore45/Newtonsoft.Json.dll",
+        "lib/netcore45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Newtonsoft.Json.xml",
+        "Newtonsoft.Json.6.0.8.nupkg",
+        "Newtonsoft.Json.6.0.8.nupkg.sha512",
+        "Newtonsoft.Json.nuspec",
+        "tools/install.ps1"
       ]
     },
     "runtime.win7.System.Threading/4.0.11-beta-23516": {
@@ -1641,7 +1745,9 @@
   },
   "projectFileDependencyGroups": {
     "": [],
-    ".NETFramework,Version=v4.5.1": [],
+    ".NETFramework,Version=v4.5.1": [
+      "Microsoft.Azure.DocumentDB >= 1.6.3"
+    ],
     ".NETPlatform,Version=v5.4": [
       "Microsoft.CSharp >= 4.0.1-beta-23516",
       "System.Collections >= 4.0.11-beta-23516",
