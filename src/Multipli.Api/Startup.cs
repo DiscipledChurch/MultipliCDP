@@ -46,14 +46,13 @@ namespace Multipli.Api
         {
             try
             {
-                services.Configure<ConnectionOptions>(connection =>
+                services.Configure<StorageOptions>(connection =>
                 {
                     connection.Provider =
                         (ProviderType) Enum.Parse(typeof (ProviderType), _configuration["Data:Provider"]);
 
                     connection.EndpointUrl = _configuration["Data:DocumentDb:EndpointUrl"] ?? string.Empty;
-                    connection.AuthorizationKey = _configuration["Data:DocumentDb:AuthorizationKey"] ??
-                                                        string.Empty;
+                    connection.AuthorizationKey = _configuration["Data:DocumentDb:AuthorizationKey"] ?? string.Empty;
                     connection.ConnectionString = _configuration["Data:Sql:ConnectionString"] ?? string.Empty;
                 });
             }
