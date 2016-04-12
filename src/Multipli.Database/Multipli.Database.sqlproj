@@ -57,25 +57,24 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="2016.01.01" />
-    <Folder Include="2016.01.01\Indexes" />
-    <Folder Include="2016.01.01\Tables" />
-    <Folder Include="2016.01.01\Stored Procedures" />
+    <Folder Include="Indexes" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="2016.01.01\Indexes\IX_FK_tblPeople_FamilyId_tblFamilies_Id.sql" />
-    <Build Include="2016.01.01\Indexes\IX_FK_tblPeople_GenderId_tblGenders_Id.sql" />
-    <Build Include="2016.01.01\Tables\tblFamilies.sql" />
-    <Build Include="2016.01.01\Tables\tblGenders.sql" />
-    <Build Include="2016.01.01\Tables\tblPeople.sql" />
-    <Build Include="2016.01.01\Stored Procedures\tblFamilies_InsertFamily.sql" />
-    <Build Include="2016.01.01\Stored Procedures\tblPeople_InsertPerson.sql" />
-    <Build Include="2016.01.01\Tables\tblOrganizations.sql" />
-    <Build Include="2016.01.01\Tables\tblRoles.sql" />
-    <Build Include="2016.01.01\Tables\tblAccounts.sql" />
-    <Build Include="2016.01.01\Tables\tblAccountRoles.sql" />
+    <Build Include="Indexes\IX_FK_tblPeople_FamilyId_tblFamilies_Id.sql" />
+    <Build Include="Indexes\IX_FK_tblPeople_GenderId_tblGenders_Id.sql" />
+    <Build Include="Stored Procedures\tblFamilies_InsertFamily.sql" />
+    <Build Include="Stored Procedures\tblPeople_InsertPerson.sql" />
+    <Build Include="Tables\tblAccountRoles.sql" />
+    <Build Include="Tables\tblAccounts.sql" />
+    <Build Include="Tables\tblFamilies.sql" />
+    <Build Include="Tables\tblGenders.sql" />
+    <Build Include="Tables\tblOrganizations.sql" />
+    <Build Include="Tables\tblPeople.sql" />
+    <Build Include="Tables\tblRoles.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="2016.01.01\_build.txt" />
+    <None Include="_build.txt" />
   </ItemGroup>
 </Project>

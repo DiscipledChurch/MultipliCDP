@@ -12,12 +12,15 @@
       "type": "string",
       "description": "The telephone number."
     },
-    "phoneNumberType": { "$ref": "http://multipli.io/phoneNumberType#" },
+    "phoneNumberType": {
+      "enum": [ "Mobile"]
+    },
     "organizationId": { "$ref": "http://multipli.io/organization#" },
     "localtionId": { "$ref": "http://multipli.io/location#" }
   },
   "required": [
     "id",
-    "number"
+    "number",
+    "phoneNumberType"
   ]
 }
