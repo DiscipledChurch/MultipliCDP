@@ -98,6 +98,7 @@
           <Property Name="CustomUrl" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
           <NavigationProperty Name="PhoneNumbers" Relationship="Model.OrganizationPhoneNumber" FromRole="Organization" ToRole="PhoneNumber" />
           <NavigationProperty Name="Addresses" Relationship="Model.OrganizationAddress" FromRole="Organization" ToRole="Address" />
+          <Property Name="IsAuthorized" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -111,6 +112,7 @@
           <NavigationProperty Name="PhoneNumbers" Relationship="Model.LocationPhoneNumber" FromRole="Location" ToRole="PhoneNumber" />
           <NavigationProperty Name="Addresses" Relationship="Model.LocationAddress" FromRole="Location" ToRole="Address" />
           <NavigationProperty Name="People" Relationship="Model.PeopleLocation" FromRole="Location" ToRole="People" />
+          <Property Name="IsAuthorized" Type="Boolean" Nullable="true" />
         </EntityType>
         <Association Name="LocationOrganization">
           <End Type="Model.Location" Role="Location" Multiplicity="*" />

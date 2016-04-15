@@ -64,17 +64,21 @@
   <ItemGroup>
     <Build Include="Indexes\IX_FK_tblPeople_FamilyId_tblFamilies_Id.sql" />
     <Build Include="Indexes\IX_FK_tblPeople_GenderId_tblGenders_Id.sql" />
-    <Build Include="Stored Procedures\tblFamilies_InsertFamily.sql" />
     <Build Include="Stored Procedures\tblPeople_InsertPerson.sql" />
     <Build Include="Tables\tblAccountRoles.sql" />
     <Build Include="Tables\tblAccounts.sql" />
-    <Build Include="Tables\tblFamilies.sql" />
     <Build Include="Tables\tblGenders.sql" />
     <Build Include="Tables\tblOrganizations.sql" />
     <Build Include="Tables\tblPeople.sql" />
     <Build Include="Tables\tblRoles.sql" />
+    <Build Include="Tables\tblRelationshipTypes.sql" />
+    <Build Include="Tables\tblAddressTypes.sql" />
+    <Build Include="Tables\tblPhoneNumberTypes.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_build.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Multipli.Database.refactorlog" />
   </ItemGroup>
 </Project>
