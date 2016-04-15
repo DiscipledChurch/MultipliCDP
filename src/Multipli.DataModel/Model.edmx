@@ -52,16 +52,7 @@
             <End Role="Location" EntitySet="Locations" />
             <End Role="Address" EntitySet="Addresses" />
           </AssociationSet>
-          <EntitySet Name="Families" EntityType="Model.Family" />
-          <EntitySet Name="People" EntityType="Model.People" />
-          <AssociationSet Name="FamilyLocation" Association="Model.FamilyLocation">
-            <End Role="Family" EntitySet="Families" />
-            <End Role="Location" EntitySet="Locations" />
-          </AssociationSet>
-          <AssociationSet Name="PeopleFamily" Association="Model.PeopleFamily">
-            <End Role="People" EntitySet="People" />
-            <End Role="Family" EntitySet="Families" />
-          </AssociationSet>
+          <EntitySet Name="People1" EntityType="Model.Person" />
           <EntitySet Name="Relationships" EntityType="Model.Relationship" />
           <EntitySet Name="RelationshipTypes" EntityType="Model.RelationshipType" />
           <AssociationSet Name="RelationshipRelationshipType" Association="Model.RelationshipRelationshipType">
@@ -70,16 +61,30 @@
           </AssociationSet>
           <AssociationSet Name="RelationshipPeople" Association="Model.RelationshipPeople">
             <End Role="Relationship" EntitySet="Relationships" />
-            <End Role="People" EntitySet="People" />
+            <End Role="People" EntitySet="People1" />
           </AssociationSet>
           <AssociationSet Name="RelationshipPeople1" Association="Model.RelationshipPeople1">
             <End Role="Relationship" EntitySet="Relationships" />
-            <End Role="People" EntitySet="People" />
+            <End Role="People" EntitySet="People1" />
           </AssociationSet>
-          <EntitySet Name="GenderTypes" EntityType="Model.GenderType" />
+          <EntitySet Name="Genders" EntityType="Model.Gender" />
           <AssociationSet Name="PeopleGenderType" Association="Model.PeopleGenderType">
-            <End Role="People" EntitySet="People" />
-            <End Role="GenderType" EntitySet="GenderTypes" />
+            <End Role="People" EntitySet="People1" />
+            <End Role="GenderType" EntitySet="Genders" />
+          </AssociationSet>
+          <AssociationSet Name="PeopleLocation" Association="Model.PeopleLocation">
+            <End Role="People" EntitySet="People1" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <EntitySet Name="Authentications" EntityType="Model.Authentication" />
+          <AssociationSet Name="AuthenticationPerson" Association="Model.AuthenticationPerson">
+            <End Role="Authentication" EntitySet="Authentications" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
+          <EntitySet Name="EmailAddresses" EntityType="Model.EmailAddress" />
+          <AssociationSet Name="EmailAddressPerson" Association="Model.EmailAddressPerson">
+            <End Role="EmailAddress" EntitySet="EmailAddresses" />
+            <End Role="Person" EntitySet="People1" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Organization">
@@ -105,7 +110,7 @@
           <Property Name="CustomUrl" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
           <NavigationProperty Name="PhoneNumbers" Relationship="Model.LocationPhoneNumber" FromRole="Location" ToRole="PhoneNumber" />
           <NavigationProperty Name="Addresses" Relationship="Model.LocationAddress" FromRole="Location" ToRole="Address" />
-          <NavigationProperty Name="Families" Relationship="Model.FamilyLocation" FromRole="Location" ToRole="Family" />
+          <NavigationProperty Name="People" Relationship="Model.PeopleLocation" FromRole="Location" ToRole="People" />
         </EntityType>
         <Association Name="LocationOrganization">
           <End Type="Model.Location" Role="Location" Multiplicity="*" />
@@ -256,21 +261,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Family">
+        <EntityType Name="Person">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <NavigationProperty Name="Location" Relationship="Model.FamilyLocation" FromRole="Family" ToRole="Location" />
-          <Property Name="LocationId" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="People" Relationship="Model.PeopleFamily" FromRole="Family" ToRole="People" />
-        </EntityType>
-        <EntityType Name="People">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <NavigationProperty Name="Family" Relationship="Model.PeopleFamily" FromRole="People" ToRole="Family" />
           <Property Name="FamilyId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Relationships" Relationship="Model.RelationshipPeople" FromRole="People" ToRole="Relationship" />
           <NavigationProperty Name="Relationships1" Relationship="Model.RelationshipPeople1" FromRole="People" ToRole="Relationship" />
@@ -278,32 +273,11 @@
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="75" Unicode="true" />
           <Property Name="Birthdate" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="GenderType" Relationship="Model.PeopleGenderType" FromRole="People" ToRole="GenderType" />
-          <Property Name="GenderTypeId" Type="Int16" Nullable="true" />
+          <Property Name="GenderId" Type="Int16" Nullable="true" />
+          <NavigationProperty Name="Locations" Relationship="Model.PeopleLocation" FromRole="People" ToRole="Location" />
+          <NavigationProperty Name="Authentication" Relationship="Model.AuthenticationPerson" FromRole="Person" ToRole="Authentication" />
+          <NavigationProperty Name="EmailAddresses" Relationship="Model.EmailAddressPerson" FromRole="Person" ToRole="EmailAddress" />
         </EntityType>
-        <Association Name="FamilyLocation">
-          <End Type="Model.Family" Role="Family" Multiplicity="*" />
-          <End Type="Model.Location" Role="Location" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Family">
-              <PropertyRef Name="LocationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="PeopleFamily">
-          <End Type="Model.People" Role="People" Multiplicity="*" />
-          <End Type="Model.Family" Role="Family" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Family">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="People">
-              <PropertyRef Name="FamilyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Relationship">
           <Key>
             <PropertyRef Name="Id" />
@@ -338,7 +312,7 @@
         </Association>
         <Association Name="RelationshipPeople">
           <End Type="Model.Relationship" Role="Relationship" Multiplicity="*" />
-          <End Type="Model.People" Role="People" Multiplicity="1" />
+          <End Type="Model.Person" Role="People" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="People">
               <PropertyRef Name="Id" />
@@ -350,7 +324,7 @@
         </Association>
         <Association Name="RelationshipPeople1">
           <End Type="Model.Relationship" Role="Relationship" Multiplicity="*" />
-          <End Type="Model.People" Role="People" Multiplicity="1" />
+          <End Type="Model.Person" Role="People" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="People">
               <PropertyRef Name="Id" />
@@ -360,23 +334,71 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="GenderType">
+        <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
           <NavigationProperty Name="People" Relationship="Model.PeopleGenderType" FromRole="GenderType" ToRole="People" />
         </EntityType>
         <Association Name="PeopleGenderType">
-          <End Type="Model.People" Role="People" Multiplicity="*" />
-          <End Type="Model.GenderType" Role="GenderType" Multiplicity="0..1" />
+          <End Type="Model.Person" Role="People" Multiplicity="*" />
+          <End Type="Model.Gender" Role="GenderType" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="GenderType">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="People">
-              <PropertyRef Name="GenderTypeId" />
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PeopleLocation">
+          <End Type="Model.Person" Role="People" Multiplicity="*" />
+          <End Type="Model.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Authentication">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Person" Relationship="Model.AuthenticationPerson" FromRole="Authentication" ToRole="Person" />
+          <Property Name="Hash" Type="String" Nullable="false" Unicode="true" MaxLength="255" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="255" Unicode="true" />
+          <Property Name="ConfirmGuid" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+          <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+          <Property Name="IsAuthorized" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="AuthenticationPerson">
+          <End Type="Model.Authentication" Role="Authentication" Multiplicity="1" />
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+        </Association>
+        <EntityType Name="EmailAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Person" Relationship="Model.EmailAddressPerson" FromRole="EmailAddress" ToRole="Person" />
+          <Property Name="PersonId" Type="Guid" Nullable="false" />
+          <Property Name="IsPrimary" Type="Boolean" Nullable="false" />
+          <Property Name="LocationSubscribed" Type="Boolean" Nullable="false" />
+          <Property Name="MarketingSubscribed" Type="Boolean" Nullable="false" />
+          <Property Name="SystemSubscribed" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="EmailAddressPerson">
+          <End Type="Model.EmailAddress" Role="EmailAddress" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailAddress">
+              <PropertyRef Name="PersonId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
