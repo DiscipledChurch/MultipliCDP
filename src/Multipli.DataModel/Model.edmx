@@ -91,7 +91,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
           <NavigationProperty Name="Locations" Relationship="Model.LocationOrganization" FromRole="Organization" ToRole="Location" />
           <Property Name="Hostname" Type="String" Nullable="false" MaxLength="15" Unicode="true" />
@@ -104,9 +104,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Organization" Relationship="Model.LocationOrganization" FromRole="Location" ToRole="Organization" />
-          <Property Name="OrganizationId" Type="Int64" Nullable="false" />
+          <Property Name="OrganizationId" Type="Guid" Nullable="false" />
           <Property Name="Hostname" Type="String" Nullable="false" MaxLength="15" Unicode="true" />
           <Property Name="CustomUrl" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
           <NavigationProperty Name="PhoneNumbers" Relationship="Model.LocationPhoneNumber" FromRole="Location" ToRole="PhoneNumber" />
@@ -145,9 +145,9 @@
           <NavigationProperty Name="AddressType" Relationship="Model.AddressAddressType" FromRole="Address" ToRole="AddressType" />
           <Property Name="AddressTypeId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="Model.OrganizationAddress" FromRole="Address" ToRole="Organization" />
-          <Property Name="OrganizationId" Type="Int64" Nullable="true" />
+          <Property Name="OrganizationId" Type="Guid" Nullable="true" />
           <NavigationProperty Name="Location" Relationship="Model.LocationAddress" FromRole="Address" ToRole="Location" />
-          <Property Name="LocationId" Type="Int64" Nullable="true" />
+          <Property Name="LocationId" Type="Guid" Nullable="true" />
           <Property Name="Preferred" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="AddressPostalCode">
@@ -171,9 +171,9 @@
           <NavigationProperty Name="PhoneNumberType" Relationship="Model.PhoneNumberPhoneNumberType" FromRole="PhoneNumber" ToRole="PhoneNumberType" />
           <Property Name="PhoneNumberTypeId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="Model.OrganizationPhoneNumber" FromRole="PhoneNumber" ToRole="Organization" />
-          <Property Name="OrganizationId" Type="Int64" Nullable="true" />
+          <Property Name="OrganizationId" Type="Guid" Nullable="true" />
           <NavigationProperty Name="Location" Relationship="Model.LocationPhoneNumber" FromRole="PhoneNumber" ToRole="Location" />
-          <Property Name="LocationId" Type="Int64" Nullable="true" />
+          <Property Name="LocationId" Type="Guid" Nullable="true" />
         </EntityType>
         <EntityType Name="PhoneNumberType">
           <Key>
