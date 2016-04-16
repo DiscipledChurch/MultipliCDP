@@ -86,6 +86,11 @@
             <End Role="EmailAddress" EntitySet="EmailAddresses" />
             <End Role="Person" EntitySet="People1" />
           </AssociationSet>
+          <EntitySet Name="Roles" EntityType="Model.Role" />
+          <AssociationSet Name="RolePerson" Association="Model.RolePerson">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Organization">
           <Key>
@@ -279,6 +284,7 @@
           <NavigationProperty Name="Locations" Relationship="Model.PeopleLocation" FromRole="People" ToRole="Location" />
           <NavigationProperty Name="Authentication" Relationship="Model.AuthenticationPerson" FromRole="Person" ToRole="Authentication" />
           <NavigationProperty Name="EmailAddresses" Relationship="Model.EmailAddressPerson" FromRole="Person" ToRole="EmailAddress" />
+          <NavigationProperty Name="Roles" Relationship="Model.RolePerson" FromRole="Person" ToRole="Role" />
         </EntityType>
         <EntityType Name="Relationship">
           <Key>
@@ -403,6 +409,18 @@
               <PropertyRef Name="PersonId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="25" Unicode="true" />
+          <NavigationProperty Name="People" Relationship="Model.RolePerson" FromRole="Role" ToRole="Person" />
+        </EntityType>
+        <Association Name="RolePerson">
+          <End Type="Model.Role" Role="Role" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>

@@ -62,7 +62,6 @@
     <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Indexes\IX_FK_tblPeople_FamilyId_tblFamilies_Id.sql" />
     <Build Include="Indexes\IX_FK_tblPeople_GenderId_tblGenders_Id.sql" />
     <Build Include="Stored Procedures\tblPeople_InsertPerson.sql" />
     <Build Include="Tables\tblAccountRoles.sql" />
@@ -74,6 +73,12 @@
     <Build Include="Tables\tblRelationshipTypes.sql" />
     <Build Include="Tables\tblAddressTypes.sql" />
     <Build Include="Tables\tblPhoneNumberTypes.sql" />
+    <Build Include="Tables\tblRelationships.sql" />
+    <Build Include="Tables\tblEmailAddresses.sql" />
+    <Build Include="Tables\tblLocations.sql" />
+    <Build Include="tblAddresses.sql" />
+    <Build Include="Tables\tblPhoneNumbers.sql" />
+    <Build Include="Tables\tblAuthentication.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_build.txt" />
