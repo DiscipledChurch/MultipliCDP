@@ -76,9 +76,9 @@
     <Build Include="Tables\tblRelationships.sql" />
     <Build Include="Tables\tblEmailAddresses.sql" />
     <Build Include="Tables\tblLocations.sql" />
-    <Build Include="tblAddresses.sql" />
     <Build Include="Tables\tblPhoneNumbers.sql" />
     <Build Include="Tables\tblAuthentication.sql" />
+    <Build Include="Tables\tblAddresses.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_build.txt" />

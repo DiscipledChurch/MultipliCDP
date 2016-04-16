@@ -372,8 +372,8 @@
           </Key>
           <Property Name="PersonId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Person" Relationship="Model.AuthenticationPerson" FromRole="Authentication" ToRole="Person" />
-          <Property Name="Hash" Type="String" Nullable="false" Unicode="true" MaxLength="255" />
-          <Property Name="Salt" Type="String" Nullable="false" MaxLength="255" Unicode="true" />
+          <Property Name="Hash" Type="String" Nullable="false" Unicode="true" MaxLength="128" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="128" Unicode="true" />
           <Property Name="ConfirmGuid" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
           <Property Name="Confirmed" Type="Boolean" Nullable="false" />
           <Property Name="IsAuthorized" Type="Boolean" Nullable="false" />
@@ -392,6 +392,9 @@
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Person" Relationship="Model.EmailAddressPerson" FromRole="EmailAddress" ToRole="Person" />
           <Property Name="PersonId" Type="Guid" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" Unicode="true" />
+          <Property Name="ConfirmGuid" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+          <Property Name="Confirmed" Type="String" Nullable="false" />
           <Property Name="IsPrimary" Type="Boolean" Nullable="false" />
           <Property Name="LocationSubscribed" Type="Boolean" Nullable="false" />
           <Property Name="MarketingSubscribed" Type="Boolean" Nullable="false" />
