@@ -82,6 +82,9 @@
     <Build Include="Indexes\IX_FK_tblEmailAddresses_PersonId_tblPeople_Id.sql" />
     <Build Include="Indexes\IX_UC_tblOrganizations_Hostname.sql" />
     <Build Include="Indexes\IX_UC_tblOrganizations_CustomUrl.sql" />
+    <Build Include="Indexes\IX_FK_tblLocations_OrganizationId_tblOrganizations_Id.sql" />
+    <Build Include="Indexes\IX_UC_tblLocations_Hostname.sql" />
+    <Build Include="Indexes\IX_UC_tblLocations_CustomUrl.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_build.txt" />
