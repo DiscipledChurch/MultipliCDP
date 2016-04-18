@@ -86,6 +86,8 @@
     <Build Include="Indexes\IX_UC_tblLocations_Hostname.sql" />
     <Build Include="Indexes\IX_UC_tblLocations_CustomUrl.sql" />
     <Build Include="Indexes\IX_FK_tblPhoneNumbers_OrganizationId_LocationId_PersonId.sql" />
+    <Build Include="Indexes\IX_FK_tblAddresses_OrganizationId_LocationId_PersonId.sql" />
+    <Build Include="Indexes\IX_FK_tblAddresses_PostalCodeId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_build.txt" />

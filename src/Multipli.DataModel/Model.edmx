@@ -154,7 +154,7 @@
           <Property Name="Main" Type="String" Nullable="false" MaxLength="255" Unicode="true" />
           <Property Name="Suite" Type="String" Nullable="false" MaxLength="255" Unicode="true" />
           <NavigationProperty Name="PostalCode" Relationship="Model.AddressPostalCode" FromRole="Address" ToRole="PostalCode" />
-          <Property Name="PostalCodeId" Type="Int32" Nullable="false" />
+          <Property Name="PostalCodeId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="AddressType" Relationship="Model.AddressAddressType" FromRole="Address" ToRole="AddressType" />
           <Property Name="AddressTypeId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="Model.OrganizationAddress" FromRole="Address" ToRole="Organization" />
