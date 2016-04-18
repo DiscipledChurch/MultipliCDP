@@ -91,6 +91,14 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="Person" EntitySet="People1" />
           </AssociationSet>
+          <AssociationSet Name="AddressPerson" Association="Model.AddressPerson">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
+          <AssociationSet Name="PhoneNumberPerson" Association="Model.PhoneNumberPerson">
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Organization">
           <Key>
@@ -154,6 +162,8 @@
           <NavigationProperty Name="Location" Relationship="Model.LocationAddress" FromRole="Address" ToRole="Location" />
           <Property Name="LocationId" Type="Guid" Nullable="true" />
           <Property Name="Preferred" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model.AddressPerson" FromRole="Address" ToRole="Person" />
+          <Property Name="PersonId" Type="Guid" Nullable="true" />
         </EntityType>
         <Association Name="AddressPostalCode">
           <End Type="Model.Address" Role="Address" Multiplicity="*" />
@@ -172,13 +182,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <Property Name="Number" Type="String" Nullable="false" />
+          <Property Name="Number" Type="String" Nullable="false" Unicode="true" MaxLength="20" />
           <NavigationProperty Name="PhoneNumberType" Relationship="Model.PhoneNumberPhoneNumberType" FromRole="PhoneNumber" ToRole="PhoneNumberType" />
           <Property Name="PhoneNumberTypeId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="Model.OrganizationPhoneNumber" FromRole="PhoneNumber" ToRole="Organization" />
           <Property Name="OrganizationId" Type="Guid" Nullable="true" />
           <NavigationProperty Name="Location" Relationship="Model.LocationPhoneNumber" FromRole="PhoneNumber" ToRole="Location" />
           <Property Name="LocationId" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="Person" Relationship="Model.PhoneNumberPerson" FromRole="PhoneNumber" ToRole="Person" />
+          <Property Name="PersonId" Type="Guid" Nullable="true" />
         </EntityType>
         <EntityType Name="PhoneNumberType">
           <Key>
@@ -285,6 +297,8 @@
           <NavigationProperty Name="Authentication" Relationship="Model.AuthenticationPerson" FromRole="Person" ToRole="Authentication" />
           <NavigationProperty Name="EmailAddresses" Relationship="Model.EmailAddressPerson" FromRole="Person" ToRole="EmailAddress" />
           <NavigationProperty Name="Roles" Relationship="Model.RolePerson" FromRole="Person" ToRole="Role" />
+          <NavigationProperty Name="Addresses" Relationship="Model.AddressPerson" FromRole="Person" ToRole="Address" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Model.PhoneNumberPerson" FromRole="Person" ToRole="PhoneNumber" />
         </EntityType>
         <EntityType Name="Relationship">
           <Key>
@@ -424,6 +438,30 @@
         <Association Name="RolePerson">
           <End Type="Model.Role" Role="Role" Multiplicity="*" />
           <End Type="Model.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        <Association Name="AddressPerson">
+          <End Type="Model.Address" Role="Address" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PhoneNumberPerson">
+          <End Type="Model.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhoneNumber">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
