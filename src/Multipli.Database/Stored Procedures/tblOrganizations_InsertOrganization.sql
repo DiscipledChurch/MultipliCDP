@@ -3,10 +3,10 @@
 	@Hostname	NVARCHAR(25)
 AS
 	INSERT INTO [dbo].[tblOrganizations] (
-		Id,
-		Name,
-		Hostname,
-		CreatedDate
+		Id
+	   ,Name
+	   ,Hostname
+	   ,CreatedDate
 		)
 	SELECT 
 		NEWID()
