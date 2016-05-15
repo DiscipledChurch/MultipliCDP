@@ -285,7 +285,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <Property Name="FamilyId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Relationships" Relationship="Model.RelationshipPeople" FromRole="People" ToRole="Relationship" />
           <NavigationProperty Name="Relationships1" Relationship="Model.RelationshipPeople1" FromRole="People" ToRole="Relationship" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="75" Unicode="true" />
