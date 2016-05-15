@@ -107,7 +107,7 @@
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
           <NavigationProperty Name="Locations" Relationship="Model.LocationOrganization" FromRole="Organization" ToRole="Location" />
-          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="15" Unicode="true" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="25" Unicode="true" />
           <Property Name="CustomUrl" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
           <NavigationProperty Name="PhoneNumbers" Relationship="Model.OrganizationPhoneNumber" FromRole="Organization" ToRole="PhoneNumber" />
           <NavigationProperty Name="Addresses" Relationship="Model.OrganizationAddress" FromRole="Organization" ToRole="Address" />
@@ -120,7 +120,7 @@
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Organization" Relationship="Model.LocationOrganization" FromRole="Location" ToRole="Organization" />
           <Property Name="OrganizationId" Type="Guid" Nullable="false" />
-          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="15" Unicode="true" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="25" Unicode="true" />
           <Property Name="CustomUrl" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
           <NavigationProperty Name="PhoneNumbers" Relationship="Model.LocationPhoneNumber" FromRole="Location" ToRole="PhoneNumber" />
           <NavigationProperty Name="Addresses" Relationship="Model.LocationAddress" FromRole="Location" ToRole="Address" />
