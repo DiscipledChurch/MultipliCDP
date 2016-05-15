@@ -112,6 +112,7 @@
           <NavigationProperty Name="PhoneNumbers" Relationship="Model.OrganizationPhoneNumber" FromRole="Organization" ToRole="PhoneNumber" />
           <NavigationProperty Name="Addresses" Relationship="Model.OrganizationAddress" FromRole="Organization" ToRole="Address" />
           <Property Name="IsAuthorized" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -126,6 +127,7 @@
           <NavigationProperty Name="Addresses" Relationship="Model.LocationAddress" FromRole="Location" ToRole="Address" />
           <NavigationProperty Name="People" Relationship="Model.PeopleLocation" FromRole="Location" ToRole="People" />
           <Property Name="IsAuthorized" Type="Boolean" Nullable="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="LocationOrganization">
           <End Type="Model.Location" Role="Location" Multiplicity="*" />

@@ -6,6 +6,7 @@
 	[Hostname] NVARCHAR(25) NULL,
 	[CustomUrl] NVARCHAR(1024) NULL,
 	[IsAuthorized] BIT NOT NULL DEFAULT 1,
+	[CreatedDate] DATETIME NOT NULL,
 	CONSTRAINT [PK_tblLocations] PRIMARY KEY NONCLUSTERED ([Id], [OrganizationId] ASC),
 	CONSTRAINT [FK_tblLocations_OrganizationId_tblOrganizations_Id] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[tblOrganizations]([Id]),
 	CONSTRAINT [UC_tblLocations_Hostname] UNIQUE ([Hostname]),
