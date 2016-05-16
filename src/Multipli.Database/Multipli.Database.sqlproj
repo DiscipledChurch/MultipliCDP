@@ -60,12 +60,12 @@
     <Folder Include="Indexes" />
     <Folder Include="Stored Procedures" />
     <Folder Include="Tables" />
+    <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Indexes\IX_FK_tblPeople_GenderId_tblGenders_Id.sql" />
-    <Build Include="Stored Procedures\tblPeople_InsertPerson.sql" />
-    <Build Include="Tables\tblAccountRoles.sql" />
-    <Build Include="Tables\tblAccounts.sql" />
+    <Build Include="Stored Procedures\spPeople_InsertPerson.sql" />
+    <Build Include="Tables\tblPeopleRoles.sql" />
     <Build Include="Tables\tblGenders.sql" />
     <Build Include="Tables\tblOrganizations.sql" />
     <Build Include="Tables\tblPeople.sql" />
@@ -87,7 +87,15 @@
     <Build Include="Indexes\IX_UC_tblLocations_CustomUrl.sql" />
     <Build Include="Indexes\IX_FK_tblPhoneNumbers_OrganizationId_LocationId_PersonId.sql" />
     <Build Include="Indexes\IX_FK_tblAddresses_OrganizationId_LocationId_PersonId.sql" />
-    <Build Include="Indexes\IX_FK_tblAddresses_PostalCodeId.sql" />
+    <Build Include="Indexes\IX_FK_tblAddresses_PostalCodeId_tblPostalCodes_Id.sql" />
+    <Build Include="Indexes\IX_FK_tblRelationships_tblPeople_Id.sql" />
+    <Build Include="Tables\tblLocationsPeople.sql" />
+    <Build Include="Indexes\IX_FK_tblLocationsPeople_LocationId_tblPeople_Id.sql" />
+    <Build Include="Stored Procedures\spOrganizations_InsertOrganization.sql" />
+    <Build Include="Stored Procedures\spOrganizations_UpdateOrganization.sql" />
+    <Build Include="Views\vwOrganizationLocations.sql" />
+    <Build Include="Stored Procedures\spOrganizationLocations_FindUrl.sql" />
+    <Build Include="Stored Procedures\spOrganizationLocations_UpdateUrl.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_build.txt" />
