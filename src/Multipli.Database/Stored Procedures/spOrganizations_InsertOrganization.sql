@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spOrganizations_InsertOrganization]
-	@Name		NVARCHAR(1024),
-	@Hostname	NVARCHAR(25)
+	@Name			NVARCHAR(1024),
+	@Hostname		NVARCHAR(25),
+	@IsAuthorized	BIT = 0
 AS
 	-- Setup resulting table
 	DECLARE @urls TABLE (
@@ -28,12 +29,14 @@ AS
 			Id
 		   ,Name
 		   ,Hostname
+		   ,IsAuthorized
 		   ,CreatedDate
 			)
 		SELECT 
 			NEWID()
 		   ,@Name
 		   ,@Hostname
+		   ,@IsAuthorized
 		   ,GETUTCDATE();
 
 		SELECT 1;
