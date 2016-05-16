@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[tblPeople_InsertPerson]
+﻿CREATE PROCEDURE [dbo].[spPeople_InsertPerson]
 	@param1 int = 0,
 	@param2 int
 AS
