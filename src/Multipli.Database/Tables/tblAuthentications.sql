@@ -6,7 +6,6 @@
 	[ConfirmGuid] NVARCHAR(100) NULL,
 	[Confirmed] BIT NOT NULL DEFAULT 0,
 	[IsAuthorized] BIT NOT NULL DEFAULT 0,
-	[IsDeleted] BIT NOT NULL DEFAULT 0,
 	[CreateDate] DATETIME NOT NULL,
 	[LastLogin] DATETIME NULL,
 	CONSTRAINT [PK_tblAuthentications] PRIMARY KEY ([PersonId] ASC),
