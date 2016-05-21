@@ -392,12 +392,11 @@
           <Property Name="ConfirmGuid" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
           <Property Name="Confirmed" Type="Boolean" Nullable="false" />
           <Property Name="IsAuthorized" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="AuthenticationPerson">
-          <End Type="Model.Authentication" Role="Authentication" Multiplicity="1" />
+          <End Type="Model.Authentication" Role="Authentication" Multiplicity="0..1" />
           <End Type="Model.Person" Role="Person" Multiplicity="1" />
         </Association>
         <EntityType Name="EmailAddress">
