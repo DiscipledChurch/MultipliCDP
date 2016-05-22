@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="ModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Organizations" EntityType="Model.Organization" />
+          <EntitySet Name="Locations" EntityType="Model.Location" />
+          <AssociationSet Name="LocationOrganization" Association="Model.LocationOrganization">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <EntitySet Name="PostalCodes" EntityType="Model.PostalCode" />
+          <EntitySet Name="Addresses" EntityType="Model.Address" />
+          <AssociationSet Name="AddressPostalCode" Association="Model.AddressPostalCode">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="PostalCode" EntitySet="PostalCodes" />
+          </AssociationSet>
+          <EntitySet Name="PhoneNumbers" EntityType="Model.PhoneNumber" />
+          <EntitySet Name="PhoneNumberTypes" EntityType="Model.PhoneNumberType" />
+          <AssociationSet Name="PhoneNumberPhoneNumberType" Association="Model.PhoneNumberPhoneNumberType">
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+            <End Role="PhoneNumberType" EntitySet="PhoneNumberTypes" />
+          </AssociationSet>
+          <AssociationSet Name="OrganizationPhoneNumber" Association="Model.OrganizationPhoneNumber">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="LocationPhoneNumber" Association="Model.LocationPhoneNumber">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <EntitySet Name="AddressTypes" EntityType="Model.AddressType" />
+          <AssociationSet Name="AddressAddressType" Association="Model.AddressAddressType">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="AddressType" EntitySet="AddressTypes" />
+          </AssociationSet>
+          <AssociationSet Name="OrganizationAddress" Association="Model.OrganizationAddress">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="LocationAddress" Association="Model.LocationAddress">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <EntitySet Name="People1" EntityType="Model.Person" />
+          <EntitySet Name="Relationships" EntityType="Model.Relationship" />
+          <EntitySet Name="RelationshipTypes" EntityType="Model.RelationshipType" />
+          <AssociationSet Name="RelationshipRelationshipType" Association="Model.RelationshipRelationshipType">
+            <End Role="Relationship" EntitySet="Relationships" />
+            <End Role="RelationshipType" EntitySet="RelationshipTypes" />
+          </AssociationSet>
+          <AssociationSet Name="RelationshipPeople" Association="Model.RelationshipPeople">
+            <End Role="Relationship" EntitySet="Relationships" />
+            <End Role="People" EntitySet="People1" />
+          </AssociationSet>
+          <AssociationSet Name="RelationshipPeople1" Association="Model.RelationshipPeople1">
+            <End Role="Relationship" EntitySet="Relationships" />
+            <End Role="People" EntitySet="People1" />
+          </AssociationSet>
+          <EntitySet Name="Genders" EntityType="Model.Gender" />
+          <AssociationSet Name="PeopleGenderType" Association="Model.PeopleGenderType">
+            <End Role="People" EntitySet="People1" />
+            <End Role="GenderType" EntitySet="Genders" />
+          </AssociationSet>
+          <AssociationSet Name="PeopleLocation" Association="Model.PeopleLocation">
+            <End Role="People" EntitySet="People1" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <EntitySet Name="Authentications" EntityType="Model.Authentication" />
+          <AssociationSet Name="AuthenticationPerson" Association="Model.AuthenticationPerson">
+            <End Role="Authentication" EntitySet="Authentications" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
+          <EntitySet Name="EmailAddresses" EntityType="Model.EmailAddress" />
+          <AssociationSet Name="EmailAddressPerson" Association="Model.EmailAddressPerson">
+            <End Role="EmailAddress" EntitySet="EmailAddresses" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="Model.Role" />
+          <AssociationSet Name="RolePerson" Association="Model.RolePerson">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
+          <AssociationSet Name="AddressPerson" Association="Model.AddressPerson">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
+          <AssociationSet Name="PhoneNumberPerson" Association="Model.PhoneNumberPerson">
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+            <End Role="Person" EntitySet="People1" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
+          <NavigationProperty Name="Locations" Relationship="Model.LocationOrganization" FromRole="Organization" ToRole="Location" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="25" Unicode="true" />
+          <Property Name="CustomUrl" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Model.OrganizationPhoneNumber" FromRole="Organization" ToRole="PhoneNumber" />
+          <NavigationProperty Name="Addresses" Relationship="Model.OrganizationAddress" FromRole="Organization" ToRole="Address" />
+          <Property Name="IsAuthorized" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Organization" Relationship="Model.LocationOrganization" FromRole="Location" ToRole="Organization" />
+          <Property Name="OrganizationId" Type="Guid" Nullable="false" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="25" Unicode="true" />
+          <Property Name="CustomUrl" Type="String" Nullable="false" MaxLength="1024" Unicode="true" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Model.LocationPhoneNumber" FromRole="Location" ToRole="PhoneNumber" />
+          <NavigationProperty Name="Addresses" Relationship="Model.LocationAddress" FromRole="Location" ToRole="Address" />
+          <NavigationProperty Name="People" Relationship="Model.PeopleLocation" FromRole="Location" ToRole="People" />
+          <Property Name="IsAuthorized" Type="Boolean" Nullable="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="LocationOrganization">
+          <End Type="Model.Location" Role="Location" Multiplicity="*" />
+          <End Type="Model.Organization" Role="Organization" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PostalCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Addresses" Relationship="Model.AddressPostalCode" FromRole="PostalCode" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Main" Type="String" Nullable="false" MaxLength="255" Unicode="true" />
+          <Property Name="Suite" Type="String" Nullable="false" MaxLength="255" Unicode="true" />
+          <NavigationProperty Name="PostalCode" Relationship="Model.AddressPostalCode" FromRole="Address" ToRole="PostalCode" />
+          <Property Name="PostalCodeId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AddressType" Relationship="Model.AddressAddressType" FromRole="Address" ToRole="AddressType" />
+          <Property Name="AddressTypeId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Organization" Relationship="Model.OrganizationAddress" FromRole="Address" ToRole="Organization" />
+          <Property Name="OrganizationId" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="Location" Relationship="Model.LocationAddress" FromRole="Address" ToRole="Location" />
+          <Property Name="LocationId" Type="Guid" Nullable="true" />
+          <Property Name="Preferred" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model.AddressPerson" FromRole="Address" ToRole="Person" />
+          <Property Name="PersonId" Type="Guid" Nullable="true" />
+        </EntityType>
+        <Association Name="AddressPostalCode">
+          <End Type="Model.Address" Role="Address" Multiplicity="*" />
+          <End Type="Model.PostalCode" Role="PostalCode" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="PostalCode">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PostalCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PhoneNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Number" Type="String" Nullable="false" Unicode="true" MaxLength="20" />
+          <NavigationProperty Name="PhoneNumberType" Relationship="Model.PhoneNumberPhoneNumberType" FromRole="PhoneNumber" ToRole="PhoneNumberType" />
+          <Property Name="PhoneNumberTypeId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Organization" Relationship="Model.OrganizationPhoneNumber" FromRole="PhoneNumber" ToRole="Organization" />
+          <Property Name="OrganizationId" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="Location" Relationship="Model.LocationPhoneNumber" FromRole="PhoneNumber" ToRole="Location" />
+          <Property Name="LocationId" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="Person" Relationship="Model.PhoneNumberPerson" FromRole="PhoneNumber" ToRole="Person" />
+          <Property Name="PersonId" Type="Guid" Nullable="true" />
+        </EntityType>
+        <EntityType Name="PhoneNumberType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="15" Unicode="true" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Model.PhoneNumberPhoneNumberType" FromRole="PhoneNumberType" ToRole="PhoneNumber" />
+        </EntityType>
+        <Association Name="PhoneNumberPhoneNumberType">
+          <End Type="Model.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+          <End Type="Model.PhoneNumberType" Role="PhoneNumberType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneNumberType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhoneNumber">
+              <PropertyRef Name="PhoneNumberTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrganizationPhoneNumber">
+          <End Type="Model.Organization" Role="Organization" Multiplicity="0..1" />
+          <End Type="Model.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhoneNumber">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LocationPhoneNumber">
+          <End Type="Model.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="Model.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhoneNumber">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AddressType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="15" Unicode="true" />
+          <NavigationProperty Name="Addresses" Relationship="Model.AddressAddressType" FromRole="AddressType" ToRole="Address" />
+        </EntityType>
+        <Association Name="AddressAddressType">
+          <End Type="Model.Address" Role="Address" Multiplicity="*" />
+          <End Type="Model.AddressType" Role="AddressType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AddressType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="AddressTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrganizationAddress">
+          <End Type="Model.Organization" Role="Organization" Multiplicity="0..1" />
+          <End Type="Model.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LocationAddress">
+          <End Type="Model.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="Model.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Relationships" Relationship="Model.RelationshipPeople" FromRole="People" ToRole="Relationship" />
+          <NavigationProperty Name="Relationships1" Relationship="Model.RelationshipPeople1" FromRole="People" ToRole="Relationship" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="75" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="75" Unicode="true" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="GenderType" Relationship="Model.PeopleGenderType" FromRole="People" ToRole="GenderType" />
+          <Property Name="GenderId" Type="Int16" Nullable="true" />
+          <NavigationProperty Name="Locations" Relationship="Model.PeopleLocation" FromRole="People" ToRole="Location" />
+          <NavigationProperty Name="Authentication" Relationship="Model.AuthenticationPerson" FromRole="Person" ToRole="Authentication" />
+          <NavigationProperty Name="EmailAddresses" Relationship="Model.EmailAddressPerson" FromRole="Person" ToRole="EmailAddress" />
+          <NavigationProperty Name="Roles" Relationship="Model.RolePerson" FromRole="Person" ToRole="Role" />
+          <NavigationProperty Name="Addresses" Relationship="Model.AddressPerson" FromRole="Person" ToRole="Address" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Model.PhoneNumberPerson" FromRole="Person" ToRole="PhoneNumber" />
+        </EntityType>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="RelationshipType" Relationship="Model.RelationshipRelationshipType" FromRole="Relationship" ToRole="RelationshipType" />
+          <Property Name="RelationshipTypeId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="PersonOne" Relationship="Model.RelationshipPeople" FromRole="Relationship" ToRole="People" />
+          <Property Name="PersonOneId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="PersonTwo" Relationship="Model.RelationshipPeople1" FromRole="Relationship" ToRole="People" />
+          <Property Name="PersonTwoId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RelationshipType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="25" Unicode="true" />
+          <NavigationProperty Name="Relationships" Relationship="Model.RelationshipRelationshipType" FromRole="RelationshipType" ToRole="Relationship" />
+        </EntityType>
+        <Association Name="RelationshipRelationshipType">
+          <End Type="Model.Relationship" Role="Relationship" Multiplicity="*" />
+          <End Type="Model.RelationshipType" Role="RelationshipType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="RelationshipType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="RelationshipTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RelationshipPeople">
+          <End Type="Model.Relationship" Role="Relationship" Multiplicity="*" />
+          <End Type="Model.Person" Role="People" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="PersonOneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RelationshipPeople1">
+          <End Type="Model.Relationship" Role="Relationship" Multiplicity="*" />
+          <End Type="Model.Person" Role="People" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="PersonTwoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="Model.PeopleGenderType" FromRole="GenderType" ToRole="People" />
+        </EntityType>
+        <Association Name="PeopleGenderType">
+          <End Type="Model.Person" Role="People" Multiplicity="*" />
+          <End Type="Model.Gender" Role="GenderType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GenderType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PeopleLocation">
+          <End Type="Model.Person" Role="People" Multiplicity="*" />
+          <End Type="Model.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Authentication">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Person" Relationship="Model.AuthenticationPerson" FromRole="Authentication" ToRole="Person" />
+          <Property Name="Hash" Type="String" Nullable="false" Unicode="true" MaxLength="128" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="128" Unicode="true" />
+          <Property Name="ConfirmGuid" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+          <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+          <Property Name="IsAuthorized" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="AuthenticationPerson">
+          <End Type="Model.Authentication" Role="Authentication" Multiplicity="0..1" />
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+        </Association>
+        <EntityType Name="EmailAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Person" Relationship="Model.EmailAddressPerson" FromRole="EmailAddress" ToRole="Person" />
+          <Property Name="PersonId" Type="Guid" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" Unicode="true" />
+          <Property Name="ConfirmGuid" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+          <Property Name="Confirmed" Type="String" Nullable="false" />
+          <Property Name="IsPrimary" Type="Boolean" Nullable="false" />
+          <Property Name="LocationSubscribed" Type="Boolean" Nullable="false" />
+          <Property Name="MarketingSubscribed" Type="Boolean" Nullable="false" />
+          <Property Name="SystemSubscribed" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="EmailAddressPerson">
+          <End Type="Model.EmailAddress" Role="EmailAddress" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailAddress">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="25" Unicode="true" />
+          <NavigationProperty Name="People" Relationship="Model.RolePerson" FromRole="Role" ToRole="Person" />
+        </EntityType>
+        <Association Name="RolePerson">
+          <End Type="Model.Role" Role="Role" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        <Association Name="AddressPerson">
+          <End Type="Model.Address" Role="Address" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PhoneNumberPerson">
+          <End Type="Model.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhoneNumber">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model" />
+        <Alias Key="Target" Value="Model.Store" />
+        <EntityContainerMapping CdmEntityContainer="ModelContainer" StorageEntityContainer="ModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

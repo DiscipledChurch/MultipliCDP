@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[tblGenders]
+(
+	[Id] SMALLINT NOT NULL,
+	[Value] NVARCHAR(15) NOT NULL,
+	CONSTRAINT [PK_tblGenders] PRIMARY KEY ([Id] ASC)
+)

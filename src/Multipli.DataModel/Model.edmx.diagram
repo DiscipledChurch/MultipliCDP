@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="988c3020e2c842b3924cb9de23907a04" Name="Diagram1" ZoomLevel="102" >
+        <EntityTypeShape EntityType="Model.Organization" Width="1.5" PointX="62.75" PointY="42.75" />
+        <EntityTypeShape EntityType="Model.Location" Width="1.5" PointX="65.875" PointY="42.75" />
+        <AssociationConnector Association="Model.LocationOrganization" />
+        <EntityTypeShape EntityType="Model.PostalCode" Width="1.5" PointX="70.375" PointY="46.5" />
+        <EntityTypeShape EntityType="Model.Address" Width="1.5" PointX="68.125" PointY="46.5" />
+        <AssociationConnector Association="Model.AddressPostalCode" />
+        <EntityTypeShape EntityType="Model.PhoneNumber" Width="1.5" PointX="62.75" PointY="47" />
+        <EntityTypeShape EntityType="Model.PhoneNumberType" Width="1.5" PointX="60.25" PointY="47" />
+        <AssociationConnector Association="Model.PhoneNumberPhoneNumberType" />
+        <AssociationConnector Association="Model.OrganizationPhoneNumber" />
+        <AssociationConnector Association="Model.LocationPhoneNumber" />
+        <EntityTypeShape EntityType="Model.AddressType" Width="1.5" PointX="70.375" PointY="44.5" />
+        <AssociationConnector Association="Model.AddressAddressType" />
+        <AssociationConnector Association="Model.OrganizationAddress" />
+        <AssociationConnector Association="Model.LocationAddress" />
+        <EntityTypeShape EntityType="Model.Person" Width="1.5" PointX="72.25" PointY="40.75" />
+        <EntityTypeShape EntityType="Model.Relationship" Width="1.5" PointX="75" PointY="40.75" />
+        <EntityTypeShape EntityType="Model.RelationshipType" Width="1.5" PointX="77.875" PointY="40.75" />
+        <AssociationConnector Association="Model.RelationshipRelationshipType" />
+        <AssociationConnector Association="Model.RelationshipPeople" />
+        <AssociationConnector Association="Model.RelationshipPeople1" />
+        <EntityTypeShape EntityType="Model.Gender" Width="1.5" PointX="72.25" PointY="38" />
+        <AssociationConnector Association="Model.PeopleGenderType" />
+        <AssociationConnector Association="Model.PeopleLocation" />
+        <EntityTypeShape EntityType="Model.Authentication" Width="1.5" PointX="73.125" PointY="47.375" />
+        <AssociationConnector Association="Model.AuthenticationPerson" />
+        <EntityTypeShape EntityType="Model.EmailAddress" Width="2" PointX="75.875" PointY="44.375" />
+        <AssociationConnector Association="Model.EmailAddressPerson" />
+        <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="69.75" PointY="40.75" />
+        <AssociationConnector Association="Model.RolePerson" />
+        <AssociationConnector Association="Model.AddressPerson" />
+        <AssociationConnector Association="Model.PhoneNumberPerson" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

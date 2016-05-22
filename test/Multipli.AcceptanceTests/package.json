@@ -1,0 +1,13 @@
+{
+	"version": "1.0.0",
+	"name": "ASP.NET",
+	"private": true,
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-karma": "0.0.5",
+    "karma": "0.13.22",
+    "karma-html-detailed-reporter": "1.1.8",
+    "karma-phantomjs-launcher": "1.0.0",
+    "protractor": "3.3.0"
+  }
+}

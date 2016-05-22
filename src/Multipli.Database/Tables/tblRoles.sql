@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[tblRoles]
+(
+	[Id] SMALLINT NOT NULL,
+	[RoleName] NVARCHAR(25) NOT NULL,
+	CONSTRAINT [PK_Roles] PRIMARY KEY ([Id] ASC)
+)

@@ -1,0 +1,13 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "Multipli.AcceptanceTests Class Library",
+  "authors": [ "joshua.davis" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+    "net451": { },
+    "dotnet5.4": { }
+  }
+}
