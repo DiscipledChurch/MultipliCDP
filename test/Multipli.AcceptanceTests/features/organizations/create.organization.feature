@@ -15,11 +15,12 @@ Scenario: Create Organization
 Scenario: Attempt to Use a Preregistered Hostname
 	Given my organization is not registered
 	And I am a new user
-	When I want to sign up
-	Then I should navigate to the sign up page
+	And I want to sign up
+	When I should navigate to the sign up page
 	And enter required information for my organization
 	And enter a hostname for my organization that is already in use
 	And click "Create"
+	Then I should receive an error message
 
 Scenario: Attempt to Use an Email Address Already Registered For Creating a New Organization on Main Sign Up Page
 	Given my organization is not registered
