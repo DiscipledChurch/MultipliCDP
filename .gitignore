@@ -13,3 +13,10 @@ typings
 
 # npm cache directory
 .npm
+
+# Visual Studio Code
+.vs
+.vscode
+
+# Distribution 
+dist
