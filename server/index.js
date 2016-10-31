@@ -1,9 +1,9 @@
 // community libs
 var express = require('express'),
-//    morgan = require('morgan'),
-    path = require('path');
-//    bodyParser = require('body-parser'),
-//    mongoose = require('mongoose');
+    morgan = require('morgan'),
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose');
 
 // custom libs
 var config = require('./config.js');
@@ -12,8 +12,8 @@ var config = require('./config.js');
 var app = express();
 
 // use body parser to grab information from POST requests
-//app.use(bodyParser.urlencoded({ extended : true }));
-//app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended : true }));
+app.use(bodyParser.json());
 
 // configure to handle CORS requests
 app.use(function(req, res, next) {
@@ -24,7 +24,9 @@ app.use(function(req, res, next) {
 });
 
 // turn on logging
-//app.use(morgan('dev'));
+if (app.get('env') == 'development') {
+    app.use(morgan('dev'));
+}
 
 // configure public assets folder
 app.use(express.static(__dirname + './../dist'));
@@ -44,29 +46,9 @@ app.get('*', function(req, res) {
 });
 
 // connect to database
-//mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 //mongoose.connect(config[config.repo]);
 
 // start server
-//app.listen(config.port, syncBrowser);
 app.listen(config.port);
 
-// enable browser sync
-function syncBrowser() {
-    if (app.get('env') == 'development') {
-        var browserSync = require('browser-sync');
-        var options = {
-            logSnippet: false,
-            proxy: 'localhost:8080',
-            reloadDelay: 2000,
-            browser: 'chrome',
-            open: false,
-            ui: false,
-            files: [
-                './**/*.{js,html,css}'
-            ]
-        }
-
-        browserSync(options);
-    }
-}

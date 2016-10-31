@@ -1,22 +1,34 @@
-# Logs
-logs
-.log
-npm-debug.log*
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Coverage
-coverage
+# compiled output
+/dist
+/tmp
 
-# Dependency directories
-node_modules
-jspm_modules
-typings
+# dependencies
+/node_modules
+/bower_components
 
-# npm cache directory
-.npm
+# IDEs and editors
+/.idea
+/.vscode
+.project
+.classpath
+*.launch
+.settings/
 
-# Visual Studio Code
-.vs
-.vscode
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
 
-# Distribution 
-dist
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
+Thumbs.db
