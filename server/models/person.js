@@ -7,7 +7,7 @@ var PersonSchema = new Schema({
     firstName: { type: string, required: true },
     lastName: { type: string },
     birthdate: { type: Date },
-    gender: { type: number },
+    gender: { type: string },
     emailAddresses: { type: [EmailAddress] }
 });
 
