@@ -27,6 +27,7 @@ exports.config = {
     maxInstances: 25
   }],
   directConnect: true,
+  baseUrl: 'http://ondemand.saucelabs.com:80/wd/hub',
   //baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
