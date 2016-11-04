@@ -9,6 +9,12 @@ branches:
   only:
   - develop
 
+before_script:
+  - node server
+
+after_success:
+  - npm run e2e protractor.sauce.conf.js
+
 deploy:
   provider: heroku
   api_key:
@@ -16,9 +22,6 @@ deploy:
   on: develop
   app: multipli
   run: 'node server'
-
-after_success:
-  - npm run e2e protractor.sauce.conf.js
 
 addons:
   sauce_connect: true

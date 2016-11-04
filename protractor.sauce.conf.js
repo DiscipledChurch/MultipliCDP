@@ -26,7 +26,7 @@ exports.config = {
     shardTestFiles: true,
     maxInstances: 25
   }],
-  directConnect: true,
+  directConnect: false,
   baseUrl: 'http://ondemand.saucelabs.com:80/wd/hub',
   framework: 'jasmine',
   jasmineNodeOpts: {
