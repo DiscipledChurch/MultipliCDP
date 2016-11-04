@@ -6,7 +6,6 @@
   "scripts": {
     "start": "concurrently --kill-others \"node .\\server\" \"ng serve --proxy-config ngproxy.conf.json\"",
     "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng test --watch false",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
