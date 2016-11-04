@@ -9,5 +9,3 @@ branches:
   only:
   - develop
 
- addons:
-  sauce_connect: true
