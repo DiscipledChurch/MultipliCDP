@@ -5,15 +5,29 @@
 var SpecReporter = require('jasmine-spec-reporter');
 
 exports.config = {
+  sauceUser: process.env.SAUCE_USERNAME,
+  sauceKey: process.env.SAUCE_ACCESS_KEY,
   allScriptsTimeout: 11000,
   specs: [
     './e2e/**/*.e2e-spec.ts'
   ],
-  capabilities: {
-    'browserName': 'chrome'
-  },
+  multiCapabilities: [{
+    browserName: 'firefox',
+    version: '32',
+    platform: 'OS X 10.10',
+    name: "firefox-tests",
+    shardTestFiles: true,
+    maxInstances: 25
+  }, {
+    browserName: 'chrome',
+    version: '41',
+    platform: 'Windows 7',
+    name: "chrome-tests",
+    shardTestFiles: true,
+    maxInstances: 25
+  }],
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  //baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
