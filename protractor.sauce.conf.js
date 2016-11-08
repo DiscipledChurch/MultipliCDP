@@ -27,7 +27,7 @@ exports.config = {
     maxInstances: 25
   }],
   directConnect: false,
-  baseUrl: 'http://ondemand.saucelabs.com:80/wd/hub',
+  baseUrl: 'http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + 'ondemand.saucelabs.com/wd/hub',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
