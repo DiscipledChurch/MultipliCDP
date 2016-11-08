@@ -33,7 +33,8 @@ after_success:
 #  - sed -i '/\/dist/d' .gitignore
 #  - cat .gitignore
   - git remote add heroku https://git.heroku.com/multipli-test.git
-  - git push -f heroku develop:master
+  - git branch heroku
+  - git checkout heroku
 #  - git remote add original https://github.com/DiscipledChurch/Multipli-ChMS.git
   - git add -f ./dist
   - git commit -am 'adding dist'
