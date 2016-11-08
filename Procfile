@@ -1,1 +1,1 @@
-web: ./node_modules/.bin/tsc && node ./server
+web: npm install typescript@2.0.6 && ./node_modules/.bin/tsc && node ./server
