@@ -25,6 +25,10 @@ branches:
 
 after_success:
 #  - npm run e2e protractor.sauce.conf.js
-  - git remote add heroku git@heroku.com:multipli.git
+  - npm install angular-cli@1.0.0-beta.19-3 typescript@2.0.6
+  - ng build
+  - git remote add heroku https://git.heroku.com/multipli-test.git
+  - git add --force ./dist
+  - git push heroku develop:master
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi

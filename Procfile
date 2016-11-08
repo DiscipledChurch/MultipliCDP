@@ -1,1 +1,1 @@
-web: npm install angular-cli@1.0.0-beta.19-3 typescript@2.0.6 && ng build && node ./server
+web: node ./server
