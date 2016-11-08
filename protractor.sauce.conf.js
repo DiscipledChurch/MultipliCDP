@@ -23,21 +23,26 @@ exports.config = {
     shardTestFiles: true,
     maxInstances: 25
   }],
-  //directConnect: false,
+  directConnect: true,
   //baseUrl: 'http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + 'ondemand.saucelabs.com/wd/hub',
-  //framework: 'jasmine',
-  //jasmineNodeOpts: {
-  //  showColors: true,
-  //  defaultTimeoutInterval: 30000,
-  //  print: function() {}
-  //},
-  //useAllAngular2AppRoots: true,
+  baseUrl: 'http://localhost:4200/',
+  framework: 'jasmine',
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 30000,
+    print: function() {}
+  },
+  useAllAngular2AppRoots: true,
   //beforeLaunch: function() {
   //  require('ts-node').register({
   //    project: 'e2e'
   //  });
   //},
   onPrepare: function() {
+    require('ts-node').register({
+      project: 'e2e'
+    });
+
     var caps = browser.getCapabilities()
   },
   onComplete: function() {
