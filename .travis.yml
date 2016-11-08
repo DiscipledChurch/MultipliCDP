@@ -39,7 +39,7 @@ after_success:
   - git add -f ./dist
   - git commit -am 'adding dist'
   - git status
-  - git push -f heroku develop:master
+  - git push -f heroku heroku:master
 #  - git ls-tree --full-tree -r HEAD
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
