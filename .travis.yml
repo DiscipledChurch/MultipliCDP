@@ -33,7 +33,7 @@ after_success:
   - git remote add heroku https://git.heroku.com/multipli-test.git
   - git add -f ./dist
   - git commit -am 'adding dist'
-  - git ls-tree --fill-tree -r HEAD
+  - git ls-tree --full-tree -r HEAD
   - git push heroku develop:master
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
