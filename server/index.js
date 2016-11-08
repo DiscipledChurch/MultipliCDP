@@ -1,6 +1,6 @@
 // community libs
 var express = require('express'),
-    morgan = require('morgan'),
+//    morgan = require('morgan'),
     path = require('path'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose');
