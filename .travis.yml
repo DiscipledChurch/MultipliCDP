@@ -31,7 +31,7 @@ after_success:
   - cat ~/.netrc
   - git remote add heroku https://git.heroku.com/multipli-test.git
   - git add -f dist
-  - git commit
+  - git commit -a
   - git push heroku develop:master
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
