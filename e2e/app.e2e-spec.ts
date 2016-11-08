@@ -7,8 +7,9 @@ describe('multipli App', function() {
     page = new MultipliPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying app works', (done) => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('app works!');
+    done();
   });
 });
