@@ -24,8 +24,8 @@ exports.config = {
     maxInstances: 25
   }],
   directConnect: false,
-  baseUrl: 'http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + 'ondemand.saucelabs.com/wd/hub',
-  seleniumAddress: 'http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + 'ondemand.saucelabs.com:80/wd/hub',
+  baseUrl: 'http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + '@ondemand.saucelabs.com/wd/hub',
+  seleniumAddress: 'http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + '@ondemand.saucelabs.com:80/wd/hub',
   //baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
