@@ -2,6 +2,7 @@
   "name": "multipli",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "server/index.js",
   "angular-cli": {},
   "scripts": {
     "start": "concurrently --kill-others \"node .\\server\" \"ng serve --proxy-config ngproxy.conf.json\"",
