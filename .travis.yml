@@ -12,9 +12,6 @@ branches:
 #before_script:
 #  - npm install --only=dev
 
-after_success:
-  - npm run e2e protractor.sauce.conf.js
-
 #deploy:
 #  provider: heroku
 #  api_key:
@@ -27,5 +24,6 @@ addons:
   sauce_connect: true
 
 after_success:
+  - npm run e2e protractor.sauce.conf.js
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
