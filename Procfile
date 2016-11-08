@@ -1,1 +1,1 @@
-web: node ./server
+web: ./node_modules/.bin/tsc && node ./server
