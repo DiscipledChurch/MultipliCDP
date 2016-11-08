@@ -33,11 +33,12 @@ after_success:
 #  - sed -i '/\/dist/d' .gitignore
 #  - cat .gitignore
   - git remote add heroku https://git.heroku.com/multipli-test.git
+  - git push -f heroku develop:master
 #  - git remote add original https://github.com/DiscipledChurch/Multipli-ChMS.git
   - git add -f ./dist
   - git commit -am 'adding dist'
+  - git status
+  - git push -f heroku develop:master
 #  - git ls-tree --full-tree -r HEAD
-#  - git push -f heroku develop:master
-  - git push -f heroku
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
