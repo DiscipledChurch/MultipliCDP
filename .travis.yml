@@ -29,6 +29,8 @@ after_success:
   - ng build
   - echo -e 'machine api.heroku.com\n  login josdavis@microsoft.com\n  password ${HEROKU_AUTH}\nmachine git.heroku.com\n  login josdavis@microsoft.com\n  password f1bae9a1-ee71-4b6a-8354-d31e5c9ff039' >> ~/.netrc
   - cat ~/.netrc
+  - sed -i '' '/\/dist/d' .gitignore
+  - cat .gitignore
   - git remote add heroku https://git.heroku.com/multipli-test.git
   - git add -f ./dist
   - git commit -am 'adding dist'
