@@ -12,8 +12,8 @@ branches:
 #before_script:
 #  - npm install --only=dev
 
-#after_success:
-#  - npm run e2e protractor.sauce.conf.js
+after_success:
+  - npm run e2e protractor.sauce.conf.js
 
 #deploy:
 #  provider: heroku

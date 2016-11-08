@@ -1,9 +1,6 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/docs/referenceConf.js
 
-/*global jasmine */
-var SpecReporter = require('jasmine-spec-reporter');
-
 exports.config = {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
@@ -26,21 +23,30 @@ exports.config = {
     shardTestFiles: true,
     maxInstances: 25
   }],
-  directConnect: false,
-  baseUrl: 'http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + 'ondemand.saucelabs.com/wd/hub',
-  framework: 'jasmine',
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000,
-    print: function() {}
-  },
-  useAllAngular2AppRoots: true,
-  beforeLaunch: function() {
-    require('ts-node').register({
-      project: 'e2e'
-    });
-  },
+  //directConnect: false,
+  //baseUrl: 'http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + 'ondemand.saucelabs.com/wd/hub',
+  //framework: 'jasmine',
+  //jasmineNodeOpts: {
+  //  showColors: true,
+  //  defaultTimeoutInterval: 30000,
+  //  print: function() {}
+  //},
+  //useAllAngular2AppRoots: true,
+  //beforeLaunch: function() {
+  //  require('ts-node').register({
+  //    project: 'e2e'
+  //  });
+  //},
   onPrepare: function() {
-    jasmine.getEnv().addReporter(new SpecReporter());
+    var caps = browser.getCapabilities()
+  },
+  onComplete: function() {
+    var printSessionId = function(jobName) {
+      browser.getSession().then(function(session) {
+        console.log('SauceOnDemandSessionId=' + session.getId() + ' job-name=' + jobName);
+      });
+    }
+
+    printSessionId('multipli');
   }
 };
