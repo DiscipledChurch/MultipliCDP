@@ -1,6 +1,9 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/docs/referenceConf.js
 
+/*global jasmine */
+var SpecReporter = require('jasmine-spec-reporter');
+
 exports.config = {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
@@ -39,6 +42,8 @@ exports.config = {
   //  });
   //},
   onPrepare: function() {
+    jasmine.getEnv().addReporter(new SpecReporter());
+    
     require('ts-node').register({
       project: 'e2e'
     });
