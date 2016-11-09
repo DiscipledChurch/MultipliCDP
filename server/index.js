@@ -29,7 +29,7 @@ if (app.get('env') == 'development') {
 }
 
 // configure public assets folder
-app.use(express.static(__dirname + './../dist'));
+app.use(express.static(path.join(__dirname, '/../dist')));
 
 /*
 // add authentication routes
@@ -42,7 +42,7 @@ app.use('/api', apiRoutes);
 */
 // route for index.html
 app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname + './../dist/index.html'));
+    res.sendFile(path.join(__dirname, '/../dist/index.html'));
 });
 
 // connect to database

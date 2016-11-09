@@ -10,7 +10,7 @@ exports.config = {
     './e2e/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    browserName: 'chrome',
+    browserName: 'chrome'
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
@@ -20,7 +20,7 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     isVerbose: false,
     includeStackTrace: false,
-    print: function() {},
+    print: function() {}
   },
   useAllAngular2AppRoots: true,
   beforeLaunch: function() {
@@ -35,24 +35,5 @@ exports.config = {
       displayFailedSpec: false,         
       displayPendingSpec: false, 
     }));
-
-    jasmine.getEnv().addReporter({
-      suiteDone: function(result) {
-        specDescription = result.description;
-        specFullName = result.fullName;
-
-        console.dir(result);
-      },
-      specDone: function(result) {
-        specDescription = result.description;
-        specFullName = result.fullName;
-
-        console.dir(result);
-      }
-    });
-//    jasmine.getEnv().topSuite().afterEach({fn: function(test) {
-//      console.dir(this.getFullName());
-//
-//    }});
   }
 };
