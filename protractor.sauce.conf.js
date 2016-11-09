@@ -57,7 +57,7 @@ exports.config = {
 
         browser.getSession().then(function(session) {
 
-          var formattedResult = result.failedExpectations[0].message.replace(/'/g, "\\'");
+          var formattedResult = result.failedExpectations[0].message.replace(/'/g, "\\\"");
 
             var exec = require('child_process').exec;
             var cmd = 'curl -X PUT -s -d \'{"name": "' + result.fullName + '", "passed": false, "custom-data": { "message": "' + formattedResult + '" } }\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
