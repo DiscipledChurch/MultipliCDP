@@ -9,8 +9,11 @@ branches:
   only:
   - develop
 
+addons:
+  sauce_connect: true
+
 before_script:
-#  - npm install --only=dev
+  - echo $TRAVIS_BRANCH
   - git fetch --unshallow
   - npm install angular-cli@1.0.0-beta.19-3 typescript@2.0.6
   - ng build
@@ -22,20 +25,10 @@ before_script:
   - git commit -am 'adding dist'
   - git push -f heroku heroku:master
 
-#deploy:
-#  provider: heroku
-#  api_key:
-#    secure: 'oh+bPvnA9qloU2xFH1ZcQuDFyOUJCXDA8RVJI/iAeW09I1NBkqCEfXtu9zFfajz+3Ncv2/aoJUlkTFdJTMZUFonotCcvrc47ZLXtkGVtrXvPmy6fUG9aTAxd6EvsdeWOikWcKrB/mESIeb7hDKGi0OfdnF1JIhx9pxr1qGOUI21fXfuEHl6qujEQgc7fjUNFKN0FEadi/bE7j0eVEeFlWpJpRe7YA+XB7vOEpFRjF5k4ApbysLVkjTxFmNd0QP5MEbJREAXr/01ofuE7fZ5hdcv7ZqKpc03XWTccOQ0hyMghDjcFTGPPxoR/1nHLagxJ9S0oyTZFq8Ed2i/UwRMQ3p/VRB6eCjU7hfXY2DFxfBuuOx8NFc6hmulJzkMGui0Rk3rxep82IrIwu0SsHPmwt5QBTzBXguoa648tO9bSk8j8BhbLwk3ujs550Ia3qUYRj9JxEK0aejbUknxfbLwwBQ3aDWeP8Q06/SgpZE0x0GYl6ssN/ERiAjEc9jLKPtibwxd42gOmrpQQbEwN1C4GEyOULRTqQsF4FMl89QaAnhGeCldI36fS8DNw9S/BiO3DUWPoqRKXYkRRL3V2XUzsfdSQktZamsLC9pj5iWNBUtLS9QsgaaOtB5qf9zH1WDpuxDcEQvsgkiUdVRiNh5Ybw4TkcV2oo+rcJMhLqGPfXR8='
-#  on: develop
-#  app: multipli
-#  run: 'node server'
-
-addons:
-  sauce_connect: true
-
 script:
   - npm run e2e protractor.sauce.conf.js
 
 after_script:
+  - git branch $TRAVIS_BRANCH
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
