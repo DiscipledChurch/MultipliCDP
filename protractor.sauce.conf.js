@@ -52,6 +52,6 @@ exports.config = {
       });
     }
 
-    printSessionId('multipli');
+    printSessionId('chrome-tests');
   }
 };
