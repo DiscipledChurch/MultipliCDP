@@ -18,7 +18,9 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function() {}
+    isVerbose: false,
+    includeStackTrace: false,
+    print: function() {},
   },
   useAllAngular2AppRoots: true,
   beforeLaunch: function() {
@@ -27,6 +29,30 @@ exports.config = {
     });
   },
   onPrepare: function() {
-    jasmine.getEnv().addReporter(new SpecReporter());
+    jasmine.getEnv().addReporter(new SpecReporter({
+      displayStacktrace: 'none',
+      displaySuccessfulSpec: false,     
+      displayFailedSpec: false,         
+      displayPendingSpec: false, 
+    }));
+
+    jasmine.getEnv().addReporter({
+      suiteDone: function(result) {
+        specDescription = result.description;
+        specFullName = result.fullName;
+
+        console.dir(result);
+      },
+      specDone: function(result) {
+        specDescription = result.description;
+        specFullName = result.fullName;
+
+        console.dir(result);
+      }
+    });
+//    jasmine.getEnv().topSuite().afterEach({fn: function(test) {
+//      console.dir(this.getFullName());
+//
+//    }});
   }
 };

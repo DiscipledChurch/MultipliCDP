@@ -33,7 +33,9 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function() {}
+    isVerbose: false,
+    includeStackTrace: false,
+    print: function() {},
   },
   useAllAngular2AppRoots: true,
   //beforeLaunch: function() {
@@ -48,29 +50,34 @@ exports.config = {
       project: 'e2e'
     });
 
+    jasmine.getEnv().addReporter({
+      specDone: function(result) {
+        specDescription = result.description;
+        specFullName = result.fullName;
+
+        browser.getSession().then(function(session) {
+
+            var exec = require('child_process').exec;
+            var cmd = 'curl -X PUT -s -d \'{"name": ' + result.fullName + '; "passed": ' + result.status == 'passed' ? 'true' : 'false' + '; "custom-data": ' + result + '}\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
+
+            exec(cmd, function(error, stdout, stderr) {
+              console.log('stdout: ' + stdout);
+              console.log('stderr: ' + stderr);
+
+              if(error !== null)
+              {
+                  console.log('exec error: ' + error);
+              }
+            });
+
+        });
+
+      }
+    });
+
     var caps = browser.getCapabilities()
   },
   onComplete: function() {
-    var printSessionId = function(jobName) {
-      browser.getSession().then(function(session) {
-        
-        var exec = require('child_process').exec;
-        var cmd = 'curl -X PUT -s -d \'{"passed": true}\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
 
-        exec(cmd, function(error, stdout, stderr) {
-          console.log('stdout: ' + stdout);
-          console.log('stderr: ' + stderr);
-
-          if(error !== null)
-          {
-              console.log('exec error: ' + error);
-          }
-        });
-
-        console.log('SauceOnDemandSessionId=' + session.getId() + ' job-name=' + jobName);
-      });
-    }
-
-    printSessionId('chrome-tests');
   }
 };
