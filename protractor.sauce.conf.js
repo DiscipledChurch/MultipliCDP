@@ -62,6 +62,7 @@ exports.config = {
 var data = {
               name: result.fullName,
               passed: result.status == 'passed' ? true : false,
+              tags: [ "id-" + process.env.TRAVIS_BUILD_ID, "buildNo-" + process.env.TRAVIS_BUILD_NUMBER, "commit-" + process.env.TRAVIS_COMMIT, process.env.TRAVIS_BRANCH ],
               _customData: result
            };
 
