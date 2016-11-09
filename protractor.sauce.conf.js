@@ -50,7 +50,7 @@ exports.config = {
       browser.getSession().then(function(session) {
         
         var exec = require('child_process').exec;
-        var cmd = 'curl -X PUT -s -d \'{"passed": true}\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + 'https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
+        var cmd = 'curl -X PUT -s -d \'{"passed": true}\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
 
         exec(cmd, function(error, stdout, stderr) {
           console.log('stdout: ' + stdout);
@@ -61,7 +61,7 @@ exports.config = {
               console.log('exec error: ' + error);
           }
         });
-        
+
         console.log('SauceOnDemandSessionId=' + session.getId() + ' job-name=' + jobName);
       });
     }
