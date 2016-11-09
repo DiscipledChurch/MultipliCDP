@@ -23,7 +23,7 @@ branches:
 addons:
   sauce_connect: true
 
-after_success:
+after_script:
   - git fetch --unshallow
   - npm install angular-cli@1.0.0-beta.19-3 typescript@2.0.6
   - ng build
