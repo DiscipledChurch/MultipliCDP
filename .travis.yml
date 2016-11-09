@@ -9,8 +9,18 @@ branches:
   only:
   - develop
 
-#before_script:
+before_script:
 #  - npm install --only=dev
+  - git fetch --unshallow
+  - npm install angular-cli@1.0.0-beta.19-3 typescript@2.0.6
+  - ng build
+  - echo -e 'machine api.heroku.com\n  login josdavis@microsoft.com\n  password '$HEROKU_AUTH'\nmachine git.heroku.com\n  login josdavis@microsoft.com\n  password '$HEROKU_AUTH >> ~/.netrc
+  - git remote add heroku https://git.heroku.com/multipli-test.git
+  - git branch heroku
+  - git checkout heroku
+  - git add -f ./dist
+  - git commit -am 'adding dist'
+  - git push -f heroku heroku:master
 
 #deploy:
 #  provider: heroku
@@ -24,16 +34,8 @@ addons:
   sauce_connect: true
 
 script:
-  - git fetch --unshallow
-  - npm install angular-cli@1.0.0-beta.19-3 typescript@2.0.6
-  - ng build
-  - echo -e 'machine api.heroku.com\n  login josdavis@microsoft.com\n  password '$HEROKU_AUTH'\nmachine git.heroku.com\n  login josdavis@microsoft.com\n  password '$HEROKU_AUTH >> ~/.netrc
-  - git remote add heroku https://git.heroku.com/multipli-test.git
-  - git branch heroku
-  - git checkout heroku
-  - git add -f ./dist
-  - git commit -am 'adding dist'
-  - git push -f heroku heroku:master
   - npm run e2e protractor.sauce.conf.js
+
+after_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
