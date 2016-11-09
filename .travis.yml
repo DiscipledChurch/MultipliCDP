@@ -24,8 +24,9 @@ before_script:
   - git commit -am 'adding dist'
   - git push -f heroku heroku:master
 
-#script:
-#  - ./node_modules/.bin/protractor protractor.sauce.conf.js
+script:
+  - npm test
+  - ./node_modules/.bin/protractor protractor.sauce.conf.js
 
 after_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
