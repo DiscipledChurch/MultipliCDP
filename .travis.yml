@@ -28,8 +28,7 @@ after_success:
   - git fetch --unshallow
   - npm install angular-cli@1.0.0-beta.19-3 typescript@2.0.6
   - ng build
-  - echo -e 'machine api.heroku.com\n  login josdavis@microsoft.com\n  password'$HEROKU_AUTH'\nmachine git.heroku.com\n  login josdavis@microsoft.com\n  password '$HEROKU_AUTH >> ~/.netrc
-  - cat ~/.netrc
+  - echo -e 'machine api.heroku.com\n  login josdavis@microsoft.com\n  password '$HEROKU_AUTH'\nmachine git.heroku.com\n  login josdavis@microsoft.com\n  password '$HEROKU_AUTH >> ~/.netrc
   - git remote add heroku https://git.heroku.com/multipli-test.git
   - git branch heroku
   - git checkout heroku
