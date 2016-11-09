@@ -28,18 +28,13 @@ after_success:
   - git fetch --unshallow
   - npm install angular-cli@1.0.0-beta.19-3 typescript@2.0.6
   - ng build
-  - echo -e 'machine api.heroku.com\n  login josdavis@microsoft.com\n  password "$HEROKU_AUTH"\nmachine git.heroku.com\n  login josdavis@microsoft.com\n  password f1bae9a1-ee71-4b6a-8354-d31e5c9ff039' >> ~/.netrc
+  - echo -e 'machine api.heroku.com\n  login josdavis@microsoft.com\n  password'$HEROKU_AUTH'\nmachine git.heroku.com\n  login josdavis@microsoft.com\n  password '$HEROKU_AUTH >> ~/.netrc
   - cat ~/.netrc
-#  - sed -i '/\/dist/d' .gitignore
-#  - cat .gitignore
   - git remote add heroku https://git.heroku.com/multipli-test.git
   - git branch heroku
   - git checkout heroku
-#  - git remote add original https://github.com/DiscipledChurch/Multipli-ChMS.git
   - git add -f ./dist
   - git commit -am 'adding dist'
-  - git status
   - git push -f heroku heroku:master
-#  - git ls-tree --full-tree -r HEAD
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
