@@ -65,8 +65,8 @@ var data = {
               _customData: result
            };
 
-var formattedData = JSON.stringify(data).replace(/_customData/, "custom-data")
-                                        .replace(/'/g, "&#39;");
+var formattedData = JSON.stringify(data).replace(/_customData/, "custom-data");
+                                        //.replace(/'/g, "&#39;");
 console.log(formattedData);
 
 
