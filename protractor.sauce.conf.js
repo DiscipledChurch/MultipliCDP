@@ -52,32 +52,23 @@ exports.config = {
 
     jasmine.getEnv().addReporter({
       specDone: function(result) {
-        specDescription = result.description;
-        specFullName = result.fullName;
 
         browser.getSession().then(function(session) {
 
-          var formattedResult = result.failedExpectations[0].message.replace(/'/g, "\\\"");
-
-var data = {
+          
+          var data = {
               name: result.fullName,
               passed: result.status == 'passed' ? true : false,
               tags: [ "id-" + process.env.TRAVIS_BUILD_ID, "buildNo-" + process.env.TRAVIS_BUILD_NUMBER, "commit-" + process.env.TRAVIS_COMMIT, process.env.TRAVIS_BRANCH ],
               _customData: result
-           };
+          };
 
-var formattedData = JSON.stringify(data).replace(/_customData/, "custom-data")
-                                        .replace(/'/g, "*");
-console.log(formattedData);
+          var formattedData = JSON.stringify(data).replace(/_customData/, "custom-data")
+                                                  .replace(/'/g, "*");
 
 
             var exec = require('child_process').exec;
             var cmd = "curl -X PUT -s -d \'" + formattedData + "\' -u " + process.env.SAUCE_USERNAME + ":" + process.env.SAUCE_ACCESS_KEY + " https://saucelabs.com/rest/v1/" + process.env.SAUCE_USERNAME + "/jobs/" + session.getId();
-//            var cmd = 'curl -X PUT -s -d \'{"name": "' + result.fullName + '", "passed": false, "custom-data": { "message": "' + formattedResult + '" } }\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
-//            var cmd = 'curl -X PUT -s -d \'{"name": "' + result.fullName + '", "passed": ' + (result.status == 'passed' ? 'true' : 'false') + ', "custom-data": { "message": "' + result.failedExpectations[0].message + '"} }\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
-//console.log(JSON.stringify(result));
-//console.log(formattedResult);
-//            var cmd = 'curl -X PUT -s -d \'{"name": "' + result.fullName + '", "passed": false, "custom-data": ' + JSON.stringify(result) + '}\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
 
             exec(cmd, function(error, stdout, stderr) {
               console.log('stdout: ' + stdout);
@@ -95,8 +86,5 @@ console.log(formattedData);
     });
 
     var caps = browser.getCapabilities()
-  },
-  onComplete: function() {
-
   }
 };
