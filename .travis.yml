@@ -30,5 +30,5 @@ script:
 
 after_script:
   - cat ./coverage/coverage.lcov
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls --stdout=true; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js --stdout=true; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
