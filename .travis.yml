@@ -30,6 +30,7 @@ script:
 
 after_script:
   - cat ./coverage/coverage.lcov
-  - sed -ri 's/^SF:(?:.*!)(.*)$/\1/'
-#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js --stdout=true; fi
-#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
+  - perl -i -pe 's/^SF:(.*!)(.*)$/SF:$2/g' ./coverage/coverage.lcov
+  - cat ./coverage/coverage.lcov
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js --stdout=true; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
