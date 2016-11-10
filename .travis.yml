@@ -29,8 +29,6 @@ script:
   - ./node_modules/.bin/protractor protractor.sauce.conf.js
 
 after_script:
-  - cat ./coverage/coverage.lcov
   - perl -i -pe 's/^SF:(.*!)(.*)$/SF:$2/g' ./coverage/coverage.lcov
-  - cat ./coverage/coverage.lcov
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js --stdout=true; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov < ./coverage/coverage.lcov; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/codecov -f ./coverage/coverage.lcov; fi
