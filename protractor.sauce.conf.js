@@ -71,17 +71,9 @@ exports.config = {
             var cmd = "curl -X PUT -s -d \'" + formattedData + "\' -u " + process.env.SAUCE_USERNAME + ":" + process.env.SAUCE_ACCESS_KEY + " https://saucelabs.com/rest/v1/" + process.env.SAUCE_USERNAME + "/jobs/" + session.getId();
 
             exec(cmd, function(error, stdout, stderr) {
-              console.log('stdout: ' + stdout);
-              console.log('stderr: ' + stderr);
-
-              if(error !== null)
-              {
-                  console.log('exec error: ' + error);
-              }
+              if(!!error) console.log('exec error: ' + error);
             });
-
         });
-
       }
     });
 
