@@ -30,4 +30,5 @@ script:
 
 after_script:
   - perl -i -pe 's/^SF:(.*!)(.*)$/SF:$2/g' ./coverage/coverage.lcov
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./coverage/coverage.lcov | ./node_modules/.bin/coveralls && ./coverage/coverage.lcov | ./node_modules/.bin/codacy-coverage; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./node_modules/.bin/coveralls < ./coverage/coverage.lcov; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./coverage/coverage.lcov | ./node_modules/.bin/codacy-coverage; fi
