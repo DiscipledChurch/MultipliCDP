@@ -6,11 +6,11 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine', 'angular-cli'],
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-phantomjs-launcher'),
-      require('karma-remap-istanbul'),
-      require('angular-cli/plugins/karma')
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-phantomjs-launcher',
+      'karma-remap-istanbul',
+      'angular-cli/plugins/karma'
     ],
     files: [
       { pattern: './src/test.ts', watched: false }

@@ -1,8 +1,8 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/docs/referenceConf.js
 
-/*global jasmine */
-//var SpecReporter = require('jasmine-spec-reporter');
+var tsNode = require('ts-node'),
+  exec = require('child_process').exec;
 
 exports.config = {
   sauceUser: process.env.SAUCE_USERNAME,
@@ -35,7 +35,7 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     isVerbose: false,
     includeStackTrace: false,
-    print: function() {},
+    print: function () { }
   },
   useAllAngular2AppRoots: true,
   //beforeLaunch: function() {
@@ -43,40 +43,38 @@ exports.config = {
   //    project: 'e2e'
   //  });
   //},
-  onPrepare: function() {
-  //   jasmine.getEnv().addReporter(new SpecReporter());
-    
-    require('ts-node').register({
+  onPrepare: function () {
+    //   jasmine.getEnv().addReporter(new SpecReporter());
+
+    tsNode.register({
       project: 'e2e'
     });
 
     jasmine.getEnv().addReporter({
-      specDone: function(result) {
+      specDone: function (result) {
 
-        browser.getSession().then(function(session) {
+        browser.getSession().then(function (session) {
 
-          
+
           var data = {
-              name: result.fullName,
-              passed: result.status === 'passed' ? true : false,
-              tags: [ "id-" + process.env.TRAVIS_BUILD_ID, "buildNo-" + process.env.TRAVIS_BUILD_NUMBER, "commit-" + process.env.TRAVIS_COMMIT, process.env.TRAVIS_BRANCH ],
-              _customData: result
+            name: result.fullName,
+            passed: result.status === 'passed' ? true : false,
+            tags: ["id-" + process.env.TRAVIS_BUILD_ID, "buildNo-" + process.env.TRAVIS_BUILD_NUMBER, "commit-" + process.env.TRAVIS_COMMIT, process.env.TRAVIS_BRANCH],
+            _customData: result
           };
 
           var formattedData = JSON.stringify(data).replace(/_customData/, "custom-data")
-                                                  .replace(/'/g, "*");
+            .replace(/'/g, "*");
 
+          var cmd = "curl -X PUT -s -d \'" + formattedData + "\' -u " + process.env.SAUCE_USERNAME + ":" + process.env.SAUCE_ACCESS_KEY + " https://saucelabs.com/rest/v1/" + process.env.SAUCE_USERNAME + "/jobs/" + session.getId();
 
-            var exec = require('child_process').exec;
-            var cmd = "curl -X PUT -s -d \'" + formattedData + "\' -u " + process.env.SAUCE_USERNAME + ":" + process.env.SAUCE_ACCESS_KEY + " https://saucelabs.com/rest/v1/" + process.env.SAUCE_USERNAME + "/jobs/" + session.getId();
-
-            exec(cmd, function(error, stdout, stderr) {
-              if(!!error) console.log('exec error: ' + error);
-            });
+          exec(cmd, function (error, stdout, stderr) {
+            if (error) console.log('exec error: ' + error);
+          });
         });
       }
     });
 
-    var caps = browser.getCapabilities()
+    var caps = browser.getCapabilities();
   }
 };

@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
 });
 
 // turn on logging
-if (app.get('env') == 'development') {
+if (app.get('env') === 'development') {
 //    app.use(morgan('dev'));
 }
 
