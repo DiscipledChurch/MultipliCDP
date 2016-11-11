@@ -1,6 +1,6 @@
 # Multipli
 
-[![Coverage Status](https://coveralls.io/repos/github/DiscipledChurch/Multipli-ChMS/badge.svg?branch=develop)](https://coveralls.io/github/DiscipledChurch/Multipli-ChMS?branch=develop)
+[![Build Status](https://travis-ci.org/DiscipledChurch/Multipli-ChMS.svg?branch=develop)](https://travis-ci.org/DiscipledChurch/Multipli-ChMS) [![Coverage Status](https://coveralls.io/repos/github/DiscipledChurch/Multipli-ChMS/badge.svg?branch=develop)](https://coveralls.io/github/DiscipledChurch/Multipli-ChMS?branch=develop) [![Known Vulnerabilities](https://snyk.io/test/github/discipledchurch/multipli-chms/badge.svg)](https://snyk.io/test/github/discipledchurch/multipli-chms)
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
 
