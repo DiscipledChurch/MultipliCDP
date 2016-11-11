@@ -51,6 +51,7 @@
     "morgan": "^1.7.0",
     "phantomjs": "^2.1.7",
     "protractor": "4.0.9",
+    "snyk": "^1.19.1",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "^2.0.6",
