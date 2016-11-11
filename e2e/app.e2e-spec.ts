@@ -1,6 +1,6 @@
 import { MultipliPage } from './app.po';
 
-describe('multipli App', function () {
+describe('Multipli App', function () {
   let page: MultipliPage;
 
   beforeEach((done) => {
