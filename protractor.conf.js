@@ -2,7 +2,8 @@
 // https://github.com/angular/protractor/blob/master/docs/referenceConf.js
 
 /*global jasmine */
-var SpecReporter = require('jasmine-spec-reporter');
+var SpecReporter = require('jasmine-spec-reporter'),
+    tsNode = require('ts-node');
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -24,7 +25,7 @@ exports.config = {
   },
   useAllAngular2AppRoots: true,
   beforeLaunch: function() {
-    require('ts-node').register({
+    tsNode.register({
       project: 'e2e'
     });
   },
@@ -33,7 +34,7 @@ exports.config = {
       displayStacktrace: 'none',
       displaySuccessfulSpec: false,     
       displayFailedSpec: false,         
-      displayPendingSpec: false, 
+      displayPendingSpec: false
     }));
   }
 };
