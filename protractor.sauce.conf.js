@@ -1,5 +1,4 @@
-// Protractor configuration file, see link for more information
-// https://github.com/angular/protractor/blob/master/docs/referenceConf.js
+/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
 var tsNode = require('ts-node'),
   exec = require('child_process').exec;
@@ -35,17 +34,15 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     isVerbose: false,
     includeStackTrace: false,
-    print: function () { }
+    print() { }
   },
   useAllAngular2AppRoots: true,
-  //beforeLaunch: function() {
+  //beforeLaunch() {
   //  require('ts-node').register({
   //    project: 'e2e'
   //  });
   //},
-  onPrepare: function () {
-    //   jasmine.getEnv().addReporter(new SpecReporter());
-
+  onPrepare() {
     tsNode.register({
       project: 'e2e'
     });
@@ -66,11 +63,14 @@ exports.config = {
           var formattedData = JSON.stringify(data).replace(/_customData/, 'custom-data')
             .replace(/'/g, '*');
 
-          var cmd = "curl -X PUT -s -d \'" + formattedData + "\' -u " + process.env.SAUCE_USERNAME + ":" + process.env.SAUCE_ACCESS_KEY + " https://saucelabs.com/rest/v1/" + process.env.SAUCE_USERNAME + "/jobs/" + session.getId();
+          var cmd = `curl -X PUT -s -d \'` + formattedData + `\' -u ` + process.env.SAUCE_USERNAME + `:` + process.env.SAUCE_ACCESS_KEY + ` https://saucelabs.com/rest/v1/` + process.env.SAUCE_USERNAME + `/jobs/` + session.getId();
 
           exec(cmd, function (error, stdout, stderr) {
-            if (error) console.log('exec error: ' + error);
+            if (error) {
+              console.error('exec error: ' + error);
+            }
           });
+
         });
       }
     });
