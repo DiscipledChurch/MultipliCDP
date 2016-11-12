@@ -31,4 +31,8 @@ script:
 after_script:
   - perl -i -pe 's/^SF:(.*!)(.*)$/SF:$2/g' ./coverage/coverage.lcov
   - cat ./coverage/coverage.lcov
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls; cat ./coverage/coverage.lcov | ./node_modules/.bin/codacy-coverage --debug; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls; cat ./coverage/coverage.lcov | ./node_modules/.bin/codacy-coverage --debug; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls; fi
+  - perl -i -pe 's/^SF:(/home/travis/build/DiscipledChurch/Multipli-ChMS)(.*)$/SF:$2/g' ./coverage/coverage.lcov
+  - cat ./coverage/coverage.lcov
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cat ./coverage/coverage.lcov | ./node_modules/.bin/codacy-coverage --debug; fi
