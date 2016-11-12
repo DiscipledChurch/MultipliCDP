@@ -4,4 +4,4 @@ module.exports = {
  'secret' : '',
  'host': '',
  'masterKey' : ''
-}
+};

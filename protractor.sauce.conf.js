@@ -1,5 +1,5 @@
-// Protractor configuration file, see link for more information
-// https://github.com/angular/protractor/blob/master/docs/referenceConf.js
+/*global browser */
+/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
 var tsNode = require('ts-node'),
   exec = require('child_process').exec;
@@ -15,14 +15,14 @@ exports.config = {
     browserName: 'firefox',
     version: '32',
     platform: 'OS X 10.10',
-    name: "firefox-tests",
+    name: 'firefox-tests',
     shardTestFiles: true,
     maxInstances: 25
   }, {
     browserName: 'chrome',
     version: '41',
     platform: 'Windows 7',
-    name: "chrome-tests",
+    name: 'chrome-tests',
     shardTestFiles: true,
     maxInstances: 25
   }],
@@ -35,23 +35,21 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     isVerbose: false,
     includeStackTrace: false,
-    print: function () { }
+    print() { }
   },
   useAllAngular2AppRoots: true,
-  //beforeLaunch: function() {
+  //beforeLaunch() {
   //  require('ts-node').register({
   //    project: 'e2e'
   //  });
   //},
-  onPrepare: function () {
-    //   jasmine.getEnv().addReporter(new SpecReporter());
-
+  onPrepare() {
     tsNode.register({
       project: 'e2e'
     });
 
     jasmine.getEnv().addReporter({
-      specDone: function (result) {
+      specDone(result) {
 
         browser.getSession().then(function (session) {
 
@@ -59,18 +57,21 @@ exports.config = {
           var data = {
             name: result.fullName,
             passed: result.status === 'passed' ? true : false,
-            tags: ["id-" + process.env.TRAVIS_BUILD_ID, "buildNo-" + process.env.TRAVIS_BUILD_NUMBER, "commit-" + process.env.TRAVIS_COMMIT, process.env.TRAVIS_BRANCH],
+            tags: ['id-' + process.env.TRAVIS_BUILD_ID, 'buildNo-' + process.env.TRAVIS_BUILD_NUMBER, 'commit-' + process.env.TRAVIS_COMMIT, process.env.TRAVIS_BRANCH],
             _customData: result
           };
 
-          var formattedData = JSON.stringify(data).replace(/_customData/, "custom-data")
-            .replace(/'/g, "*");
+          var formattedData = JSON.stringify(data).replace(/_customData/, 'custom-data')
+            .replace(/'/g, '*');
 
-          var cmd = "curl -X PUT -s -d \'" + formattedData + "\' -u " + process.env.SAUCE_USERNAME + ":" + process.env.SAUCE_ACCESS_KEY + " https://saucelabs.com/rest/v1/" + process.env.SAUCE_USERNAME + "/jobs/" + session.getId();
+          var cmd = 'curl -X PUT -s -d \'' + formattedData + '\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
 
           exec(cmd, function (error, stdout, stderr) {
-            if (error) console.log('exec error: ' + error);
+            if (error) {
+              console.error('exec error: ' + error);
+            }
           });
+
         });
       }
     });

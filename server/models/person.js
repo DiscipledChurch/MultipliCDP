@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var EmailAddress = require('./emailAddress');
 
 var PersonSchema = new Schema({
-    firstName: { type: string, required: true },
-    lastName: { type: string },
+    firstName: { type: String, required: true },
+    lastName: { type: String },
     birthdate: { type: Date },
-    gender: { type: string },
+    gender: { type: String },
     emailAddresses: { type: [EmailAddress] }
 });
 

@@ -3,7 +3,7 @@
 
 /*global jasmine */
 var SpecReporter = require('jasmine-spec-reporter'),
-    tsNode = require('ts-node');
+  tsNode = require('ts-node');
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -21,19 +21,19 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     isVerbose: false,
     includeStackTrace: false,
-    print: function() {}
+    print() { }
   },
   useAllAngular2AppRoots: true,
-  beforeLaunch: function() {
+  beforeLaunch() {
     tsNode.register({
       project: 'e2e'
     });
   },
-  onPrepare: function() {
+  onPrepare() {
     jasmine.getEnv().addReporter(new SpecReporter({
       displayStacktrace: 'none',
-      displaySuccessfulSpec: false,     
-      displayFailedSpec: false,         
+      displaySuccessfulSpec: false,
+      displayFailedSpec: false,
       displayPendingSpec: false
     }));
   }

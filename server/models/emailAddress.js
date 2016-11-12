@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var EmailAddressSchema = new Schema({
-    addresse: { type: string, required: true },
-    confirmGuid: { type: string },
+    address: { type: String, required: true },
+    confirmGuid: { type: String },
     confirmed: { type: Boolean },
     isPrimary: { type: Boolean },
     locationSubscribed: { type: Boolean },
