@@ -1,3 +1,4 @@
+/*global browser */
 /*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
 var tsNode = require('ts-node'),
@@ -48,7 +49,7 @@ exports.config = {
     });
 
     jasmine.getEnv().addReporter({
-      specDone: function (result) {
+      specDone(result) {
 
         browser.getSession().then(function (session) {
 
@@ -63,7 +64,7 @@ exports.config = {
           var formattedData = JSON.stringify(data).replace(/_customData/, 'custom-data')
             .replace(/'/g, '*');
 
-          var cmd = `curl -X PUT -s -d \'` + formattedData + `\' -u ` + process.env.SAUCE_USERNAME + `:` + process.env.SAUCE_ACCESS_KEY + ` https://saucelabs.com/rest/v1/` + process.env.SAUCE_USERNAME + `/jobs/` + session.getId();
+          var cmd = 'curl -X PUT -s -d \'' + formattedData + '\' -u ' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + ' https://saucelabs.com/rest/v1/' + process.env.SAUCE_USERNAME + '/jobs/' + session.getId();
 
           exec(cmd, function (error, stdout, stderr) {
             if (error) {
