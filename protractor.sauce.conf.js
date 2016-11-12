@@ -15,14 +15,14 @@ exports.config = {
     browserName: 'firefox',
     version: '32',
     platform: 'OS X 10.10',
-    name: "firefox-tests",
+    name: 'firefox-tests',
     shardTestFiles: true,
     maxInstances: 25
   }, {
     browserName: 'chrome',
     version: '41',
     platform: 'Windows 7',
-    name: "chrome-tests",
+    name: 'chrome-tests',
     shardTestFiles: true,
     maxInstances: 25
   }],
@@ -59,12 +59,12 @@ exports.config = {
           var data = {
             name: result.fullName,
             passed: result.status === 'passed' ? true : false,
-            tags: ["id-" + process.env.TRAVIS_BUILD_ID, "buildNo-" + process.env.TRAVIS_BUILD_NUMBER, "commit-" + process.env.TRAVIS_COMMIT, process.env.TRAVIS_BRANCH],
+            tags: ['id-' + process.env.TRAVIS_BUILD_ID, 'buildNo-' + process.env.TRAVIS_BUILD_NUMBER, 'commit-' + process.env.TRAVIS_COMMIT, process.env.TRAVIS_BRANCH],
             _customData: result
           };
 
-          var formattedData = JSON.stringify(data).replace(/_customData/, "custom-data")
-            .replace(/'/g, "*");
+          var formattedData = JSON.stringify(data).replace(/_customData/, 'custom-data')
+            .replace(/'/g, '*');
 
           var cmd = "curl -X PUT -s -d \'" + formattedData + "\' -u " + process.env.SAUCE_USERNAME + ":" + process.env.SAUCE_ACCESS_KEY + " https://saucelabs.com/rest/v1/" + process.env.SAUCE_USERNAME + "/jobs/" + session.getId();
 
