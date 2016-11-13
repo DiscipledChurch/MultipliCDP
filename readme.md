@@ -6,9 +6,9 @@ Multipli is an open source Church Discipleship - _not_ Management - system.  The
 
 ## Release Target
 **February 2017**   
-We are working hard to deliver an adequte MVP - minimum viable product - that is stable, secure and meets the _basic_ needs of any size church or ministry.  After the initial release, we will continue to deliver additional components to the application.
+We are working hard to deliver an adequate MVP - minimum viable product - that is stable, secure and meets the _basic_ needs of any size church or ministry.  After the initial release, we will continue to deliver additional components to the application.
 
-**Minimum Viable Product**  
+**Minimum Viable Product (0.0.1 Alpha)**  
   1. Basic Person/Family Management
   2. User Management
   3. Mass e-mail Messaging
