@@ -21,7 +21,7 @@ While we do provide a commercial offering for Multipli, the application is avail
 
 For organizations who wish not to self-host and manage the application, Multipli does have a SaaS offering. The commercially, hosted application has all of the updates that are available in the open source product. The only difference is churches and organizations can pay for the usage of the hosted product based on the size of their organization.  As a paid service, we provide the infrastructure; we take care of the software patching and deployments; we monitor security and ensure scalability.
 
-Regardless of whether you choose to host Multipli or opt for the commercial, SaaS product, we're here to help.  Please check out our [Wiki](https://github.com/DiscipledChurch/Multipli-ChMS/wiki) for documentation or reach out on our [Issues](https://github.com/DiscipledChurch/Multipli-ChMS/issues) page for support. 
+Regardless of whether you choose to host Multipli yourself or opt for the commercial, SaaS product, we're here to help.  Please check out our [Wiki](https://github.com/DiscipledChurch/Multipli-ChMS/wiki) for documentation or reach out on our [Issues](https://github.com/DiscipledChurch/Multipli-ChMS/issues) page for support. 
 
 ## Project Team
 [Joshua Davis](http://jdav.is) - _Team Lead_   
