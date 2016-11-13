@@ -8,11 +8,11 @@ Multipli is an Open Source Church <span style="text-decoration:line-through;">Ma
 **February 2017**   
 We are working hard to deliver an adequte MVP - minimum viable product - that is stable, secure and meets the _basic_ needs of any size church or ministry.  After the initial release, we will continue to deliver additional components to the application.
 
-**Minimum Viable Product**
-1. Basic Person/Family Management
-1. User Management
-1. Mass e-mail Messaging
-1. Mass text Messaging 
+**Minimum Viable Product**  
+  1. Basic Person/Family Management
+  2. User Management
+  3. Mass e-mail Messaging
+  4. Mass text Messaging 
 
 ## Why Open Source?
 When we looked at the current market and the existing church management systems, we realized a couple of things.  Among those was the fact that the existing systems were incredibly expensive and all offered the basic functionality - everything centered around back-office management. For smaller organizations, the costs to entry were too high.  Furthermore, the costs of ownership - often requiring at least one full-time person to manage data - was not feasible for smaller, volunteer organizations. 
