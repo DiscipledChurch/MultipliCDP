@@ -4,15 +4,15 @@
 
 Multipli is an open source Church Discipleship - _not_ Management - system.  The purpose of this application is to equip churches and ministries with the ability to be intentional in the spiritual growth of their members and participants.  We, the contributors, feel that if discipleship is truly conducted, then _managing_ members will be impossible.
 
-## Release Target
+## Initial Release Target
 **February 2017**   
 We are working hard to deliver an adequate MVP - minimum viable product - that is stable, secure and meets the _basic_ needs of any size church or ministry.  After the initial release, we will continue to deliver additional components to the application.
 
 **Minimum Viable Product (0.0.1 Alpha)**  
   1. Basic Person/Family Management
   2. User Management
-  3. Mass e-mail Messaging
-  4. Mass text Messaging 
+  3. Mass E-mail Messaging
+  4. Mass Text Messaging 
 
 ## Why Open Source?
 When we looked at the current market and the existing church management systems, we realized a couple of things.  Among those was the fact that the existing systems were incredibly expensive and all offered the basic functionality - everything centered around back-office management. For smaller organizations, the costs to entry were too high.  Furthermore, the costs of ownership - often requiring at least one full-time person to manage data - was not feasible for smaller, volunteer organizations. 
