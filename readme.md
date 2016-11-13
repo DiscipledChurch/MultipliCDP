@@ -1,33 +1,30 @@
-# Multipli
+# Multipli Church Discipleship System
 
 [![Build Status](https://travis-ci.org/DiscipledChurch/Multipli-ChMS.svg?branch=develop)](https://travis-ci.org/DiscipledChurch/Multipli-ChMS) [![Coverage Status](https://coveralls.io/repos/github/DiscipledChurch/Multipli-ChMS/badge.svg?branch=develop)](https://coveralls.io/github/DiscipledChurch/Multipli-ChMS?branch=develop) [![Known Vulnerabilities](https://snyk.io/test/github/discipledchurch/multipli-chms/badge.svg)](https://snyk.io/test/github/discipledchurch/multipli-chms) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a06d6eec92b04f509023de7d93c2ea90)](https://www.codacy.com/app/DiscipledChurch/Multipli-ChMS?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DiscipledChurch/Multipli-ChMS&amp;utm_campaign=Badge_Grade)
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
+Multipli is an Open Source Church <span style="text-decoration:line-through;">Management</span> Discipleship system.  The purpose of this system is to equip churches and ministries with the ability to be intentional in the spiritual growth of their members and participants.  We, the contributors, feel that if discipleship is truly conducted, then _managing_ members will be impossible.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Release Target
+**February 2017**   
+We are working hard to deliver an adequte MVP - minimum viable product - that is stable, secure and meets the _basic_ needs of any size church or ministry.  After the initial release, we will continue to deliver additional components to the application.
 
-## Code scaffolding
+**Minimum Viable Product**
+1. Basic Person/Family Management
+1. User Management
+1. Mass e-mail Messaging
+1. Mass text Messaging 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+## Why Open Source?
+When we looked at the current market and the existing church management systems, we realized a couple of things.  Among those was the fact that the existing systems were incredibly expensive and all offered the basic functionality - everything centered around back-office management. For smaller organizations, the costs to entry were too high.  Furthermore, the costs of ownership - often requiring at least one full-time person to manage data - was not feasible for smaller, volunteer organizations. 
 
-## Build
+While we do provide a commercial offering for Multipli, the application is available as an open source product. First, we wanted to keep overall costs low. By offering it open source, organizations who have volunteers that possess some technical knowledge can install and manage the application. Second, by keeping the application open source, we invite anyone who wants to contribute to the development of the application to get involved.  The combined efforts of many contributors will take this application much further than a smaller, limited group of developers.  Finally, organizations who wish to customize and refactor the application for their own purposes are free to do so. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+For organizations who wish not to self-host and manage the application, Multipli does have a SaaS offering. The commercially, hosted application has all of the updates that are available in the open source product. The only difference is churches and organizations can pay for the usage of the hosted product based on the size of their organization.  As a paid service, we provide the infrastructure; we take care of the software patching and deployments; we monitor security and ensure scalability.
 
-## Running unit tests
+Regardless of whether you choose to host Multipli or opt for the commercial, SaaS product, we're here to help.  Please check out our [Wiki](https://github.com/DiscipledChurch/Multipli-ChMS/wiki) for documentation or reach out to our [Issues](https://github.com/DiscipledChurch/Multipli-ChMS/issues) page for support. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Project Team
+[Joshua Davis](http://jdav.is) - _Team Lead_   
+Joshua is a Cloud Solutions Architect for the Microsoft Technical Center in Atlanta, GA where his focus areas are cloud (particularly Azure), application development and IoT.  A software developer/architect of 25+ years, Joshua has successfully delivered applications across multiple platforms for various industries.  Joshua has served in many diverse ministry roles, including on staff with the Fellowship of Christian Athletes and on the streets in major cities such as Atlanta, GA and Knoxville, TN.  He lives in Atlanta, GA with his wife Jeannine and their 4 kids. 
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Interested in helping?  Jump on in and contribute.
