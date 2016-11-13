@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/DiscipledChurch/Multipli-ChMS.svg?branch=develop)](https://travis-ci.org/DiscipledChurch/Multipli-ChMS) [![Coverage Status](https://coveralls.io/repos/github/DiscipledChurch/Multipli-ChMS/badge.svg?branch=develop)](https://coveralls.io/github/DiscipledChurch/Multipli-ChMS?branch=develop) [![Known Vulnerabilities](https://snyk.io/test/github/discipledchurch/multipli-chms/badge.svg)](https://snyk.io/test/github/discipledchurch/multipli-chms) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a06d6eec92b04f509023de7d93c2ea90)](https://www.codacy.com/app/DiscipledChurch/Multipli-ChMS?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DiscipledChurch/Multipli-ChMS&amp;utm_campaign=Badge_Grade)
 
-Multipli is an Open Source Church <span style="text-decoration:line-through;">Management</span> Discipleship system.  The purpose of this system is to equip churches and ministries with the ability to be intentional in the spiritual growth of their members and participants.  We, the contributors, feel that if discipleship is truly conducted, then _managing_ members will be impossible.
+Multipli is an open source Church Discipleship - _not_ Management - system.  The purpose of this application is to equip churches and ministries with the ability to be intentional in the spiritual growth of their members and participants.  We, the contributors, feel that if discipleship is truly conducted, then _managing_ members will be impossible.
 
 ## Release Target
 **February 2017**   
@@ -21,10 +21,10 @@ While we do provide a commercial offering for Multipli, the application is avail
 
 For organizations who wish not to self-host and manage the application, Multipli does have a SaaS offering. The commercially, hosted application has all of the updates that are available in the open source product. The only difference is churches and organizations can pay for the usage of the hosted product based on the size of their organization.  As a paid service, we provide the infrastructure; we take care of the software patching and deployments; we monitor security and ensure scalability.
 
-Regardless of whether you choose to host Multipli or opt for the commercial, SaaS product, we're here to help.  Please check out our [Wiki](https://github.com/DiscipledChurch/Multipli-ChMS/wiki) for documentation or reach out to our [Issues](https://github.com/DiscipledChurch/Multipli-ChMS/issues) page for support. 
+Regardless of whether you choose to host Multipli or opt for the commercial, SaaS product, we're here to help.  Please check out our [Wiki](https://github.com/DiscipledChurch/Multipli-ChMS/wiki) for documentation or reach out on our [Issues](https://github.com/DiscipledChurch/Multipli-ChMS/issues) page for support. 
 
 ## Project Team
 [Joshua Davis](http://jdav.is) - _Team Lead_   
-Joshua is a Cloud Solutions Architect for the Microsoft Technical Center in Atlanta, GA where his focus areas are cloud (particularly Azure), application development and IoT.  A software developer/architect of 25+ years, Joshua has successfully delivered applications across multiple platforms for various industries.  Joshua has served in many diverse ministry roles, including on staff with the Fellowship of Christian Athletes and on the streets in major cities such as Atlanta, GA and Knoxville, TN.  He lives in Atlanta, GA with his wife Jeannine and their 4 kids. 
+Joshua is a Cloud Solutions Architect for the Microsoft Technical Center in Atlanta, GA where his focus areas are cloud (particularly Azure), application development and IoT.  A software developer/architect of 25+ years, Joshua has successfully delivered applications across multiple platforms for various industries.  Joshua has served in many diverse ministry roles, including on staff with the Fellowship of Christian Athletes and sharing the Gospel on the streets in major cities such as Atlanta, GA and Knoxville, TN.  He's been married to his wife Jeannine for 10 years and, together, they have 4 kids. 
 
 Interested in helping?  Jump on in and contribute.
