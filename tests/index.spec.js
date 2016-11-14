@@ -1,19 +1,19 @@
 var request = require('supertest'),
     expect = require('chai').expect;
 
-describe('loading express', function() {
+describe('loading express', () => {
     var server;
 
-    beforeEach(function(done) {
+    beforeEach((done) => {
         server = require('../server');
         done();
     });
 
-    afterEach(function() {
+    afterEach(() => {
         server.close();
     });
 
-    it('responds to /', function(done) {
+    it('responds to /', (done) => {
         request(server).get('/')
             .expect(200)
             .end(function(err, response) {
@@ -25,7 +25,7 @@ describe('loading express', function() {
             });
     });
 
-    it('returns 404', function(done) {
+    it('returns 404', (done) => {
         request(server).get('/foo').expect(404, done);
     });
 })
