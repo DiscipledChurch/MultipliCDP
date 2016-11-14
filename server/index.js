@@ -41,7 +41,7 @@ var apiRoutes = require('./app/routes/api/index')(app, express);
 app.use('/api', apiRoutes); 
 */
 // route for index.html
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/../dist/index.html'));
 });
 
@@ -50,5 +50,7 @@ mongoose.Promise = global.Promise;
 //mongoose.connect(config[config.repo]);
 
 // start server
-app.listen(config.port);
+var server = app.listen(config.port);
 
+// export for testing
+module.exports = server;
