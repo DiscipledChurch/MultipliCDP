@@ -5,12 +5,13 @@ describe('loading express', () => {
     var server;
 
     beforeEach((done) => {
+        delete require.cache[require.resolve('../server')];
         server = require('../server');
         done();
     });
 
-    afterEach(() => {
-        server.close();
+    afterEach((done) => {
+        server.close(done);
     });
 
     it('responds to /', (done) => {

@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
 // configure to handle CORS requests
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
@@ -50,7 +50,9 @@ mongoose.Promise = global.Promise;
 //mongoose.connect(config[config.repo]);
 
 // start server
-var server = app.listen(config.port);
+var server = app.listen(config.port, () => {
+    console.log('Web server listening on port %s', config.port);
+});
 
 // export for testing
 module.exports = server;
