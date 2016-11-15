@@ -1,4 +1,4 @@
-/*eslint no-console: ["error", { allow: ["log", warn", "error"] }] */
+/*eslint no-console: ["error", { allow: ["log", "warn", "error"] }] */
 
 // community libs
 var express = require('express'),
