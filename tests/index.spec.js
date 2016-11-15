@@ -29,4 +29,4 @@ describe('loading express', () => {
     it('returns 404', (done) => {
         request(server).get('/foo').expect(404, done);
     });
-})
+});
