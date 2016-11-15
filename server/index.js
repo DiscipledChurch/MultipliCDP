@@ -1,3 +1,5 @@
+/*eslint no-console: ["error", { allow: ["log", warn", "error"] }] */
+
 // community libs
 var express = require('express'),
 //    morgan = require('morgan'),
@@ -16,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
 // configure to handle CORS requests
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
@@ -41,7 +43,7 @@ var apiRoutes = require('./app/routes/api/index')(app, express);
 app.use('/api', apiRoutes); 
 */
 // route for index.html
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/../dist/index.html'));
 });
 
@@ -50,5 +52,9 @@ mongoose.Promise = global.Promise;
 //mongoose.connect(config[config.repo]);
 
 // start server
-app.listen(config.port);
+var server = app.listen(config.port, () => {
+    console.log('Web server listening on port %s', config.port);
+});
 
+// export for testing
+module.exports = server;
