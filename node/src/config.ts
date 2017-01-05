@@ -1,4 +1,4 @@
-class Config {
+export class Config {
     public port: number;
     public mongodb: string;
     public secret: string;
@@ -13,5 +13,3 @@ class Config {
         this.masterKey = '';
     }
 }
-
-export = Config;
