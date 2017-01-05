@@ -32,29 +32,18 @@
     "zone.js": "^0.6.23"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.2.30",
     "@types/mongoose": "^4.5.39",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.19-3",
     "codacy-coverage": "^2.0.0",
     "codelyzer": "1.0.0-beta.1",
     "concurrently": "^3.1.0",
     "coveralls": "^2.11.15",
-    "jasmine-core": "2.4.1",
-    "jasmine-spec-reporter": "2.5.0",
-    "karma": "1.2.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-cli": "^1.0.1",
-    "karma-jasmine": "^1.0.2",
-    "karma-phantomjs-launcher": "^1.0.2",
-    "karma-remap-istanbul": "^0.2.1",
     "morgan": "^1.7.0",
     "phantomjs": "^2.1.7",
     "protractor": "4.0.9",
     "snyk": "^1.19.1",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
-    "typescript": "^2.0.6",
-    "webdriver-manager": "10.2.5"
+    "typescript": "^2.0.6"
   }
 }
