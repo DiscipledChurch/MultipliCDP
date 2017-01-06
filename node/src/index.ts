@@ -3,22 +3,11 @@ import morgan = require('morgan');
 import path = require('path');
 import bodyParser = require('body-parser');
 
-import { Config } from './config';
+import Config from './config';
 
 class Server {
     public app: express.Application;
     public config: Config;
-
-    /**
-     * Bootstrap the Application
-     * 
-     * @class Server
-     * @method bootstrap
-     * @static
-     */
-    public static bootstrap(): Server {
-        return new Server();
-    }
 
     /**
      * cstor

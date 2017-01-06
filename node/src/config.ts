@@ -1,4 +1,4 @@
-export class Config {
+export default class Config {
     public port: number;
     public mongodb: string;
     public secret: string;
