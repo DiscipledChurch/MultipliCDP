@@ -5,7 +5,7 @@ export class Person {
     lastName: string;
     birthdate: Date;
     gender: string;
-    emailAddresses: EmailAddress[]
+    emailAddresses: EmailAddress[];
 }
 
 export interface IPeople {

@@ -9,14 +9,13 @@ class People implements IPeople {
     }
 
     public delete(id: number): void {
-    
     }
-    
+
     public get(id: number): Person {
         let person = new Person();
         return person;
     }
-    
+
     public getAll(): Person[] {
         let persons = new Array<Person>();
         return persons;
