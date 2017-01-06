@@ -1,4 +1,4 @@
-import { EmailAddress } from './emailAddress';
+import { EmailAddress } from './emailAddresses';
 
 export class Person {
     firstName: string;
