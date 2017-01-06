@@ -1,7 +1,8 @@
 import { Address } from './addresses';
 import { PhoneNumber } from './phoneNumbers';
+import { Location } from './locations';
 
-export class Location {
+export class Organization {
     name: string;
     hostname: string;
     customUrl: string;
@@ -9,4 +10,5 @@ export class Location {
     createdDate: Date;
     addresses: Address[];
     phoneNumbers: PhoneNumber[];
+    locations: Location[];
 }
