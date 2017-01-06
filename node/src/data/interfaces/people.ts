@@ -9,8 +9,8 @@ export class Person {
 }
 
 export interface IPeople {
-    save(Person): number;
-    delete(number): void;
-    get(number): Person;
+    save(person: Person): number;
+    delete(id: number): void;
+    get(id: number): Person;
     getAll(): Person[];
  }
