@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "concurrently --kill-others \"node .\\server\" \"ng serve --proxy-config ngproxy.conf.json\"",
-    "lint": "tslint \"src/**/*.ts\"",
+    "lint": "tslint -c \"node/tslint.json\" \"node/src/**/*.ts\"", 
     "test": "snyk test && ng test -cc true -l true",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
