@@ -13,7 +13,12 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "del": "^2.2.2",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-install": "^0.6.0",
+    "gulp-mocha": "^3.0.1",
+    "gulp-sourcemaps": "^2.4.0",
+    "gulp-typescript": "^3.1.4",
     "ts-helpers": "^1.1.2",
     "tslint": "^4.2.0",
     "typescript": "^2.1.4"
