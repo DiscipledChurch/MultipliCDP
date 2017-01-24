@@ -18,6 +18,7 @@
     "gulp-install": "^0.6.0",
     "gulp-mocha": "^3.0.1",
     "gulp-sourcemaps": "^2.4.0",
+    "gulp-tslint": "^7.0.1",
     "gulp-typescript": "^3.1.4",
     "ts-helpers": "^1.1.2",
     "tslint": "^4.2.0",

@@ -4,10 +4,19 @@ var install = require('gulp-install');
 var mocha = require('gulp-mocha');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
+var tslint = require('gulp-tslint');
 
 // Clean 'dist' folder
 gulp.task('clean', () => {
     return del(['dist']);
+});
+
+gulp.task('node-lint', () => {
+    return gulp.src('./node/src/**/*.ts')
+               .pipe(tslint({
+                   configuration: './node/tslint.json'
+                }))
+               .pipe(tslint.report());
 });
 
 // Build node typescript
@@ -45,7 +54,7 @@ gulp.task('node-test', () => {
 });
 
 // Build and unit test all node files
-gulp.task('build-node', gulp.series('node-compile', 'node-sourcemaps', 'node-dependencies', 'node-test'));
+gulp.task('build-node', gulp.series('node-lint', 'node-compile', 'node-sourcemaps', 'node-dependencies', 'node-test'));
 
 // Main entry point for build
 gulp.task('build', gulp.series('clean', 'build-node'));
