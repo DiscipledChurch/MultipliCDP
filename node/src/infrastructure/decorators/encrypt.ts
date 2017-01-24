@@ -2,8 +2,8 @@ import crypto = require('crypto');
 
 import Config from '../../config';
 
-
 export function encrypted(target: any, key: string) {
+    // determine if running in app or under test
     var getType = {};
     var obj = (this.encrypted && getType.toString.call(this.encrypted) === '[object Function]') ? target : this;
 
@@ -13,7 +13,6 @@ export function encrypted(target: any, key: string) {
     // property getter
     var getter = function () {
         //console.log(`Get: ${key} => ${_val}`);
-        //return decrypt(_val);
         return _val;
     };
 
@@ -23,7 +22,7 @@ export function encrypted(target: any, key: string) {
         _val = encrypt(newVal);
     };
 
-    // Delete property.
+    // delete property and assign getter/setter
     if ((delete obj[key]) && (delete obj['_' + key])) {
 
         // Create new property with getter and setter
@@ -38,12 +37,22 @@ export function encrypted(target: any, key: string) {
         // - decrypts when reading
         // - saves to main property when setting
         Object.defineProperty(target, '_' + key, {
-            get: function() { return decrypt(_val); },
+            get: function () { return decrypt(_val); },
             set: setter,
             configurable: true
         });
     }
+
+    // add key to tracked properties
+    if (!obj.encryptedKeys) {
+        obj.encryptedKeys = [];
+    } else if (obj.encryptedKeys.indexOf(key) > -1) {
+        return;
+    }
+
+    obj.encryptedKeys.push(key)
 }
+
 
 function encrypt(value: any) {
     var config = new Config();
@@ -55,7 +64,7 @@ function encrypt(value: any) {
     return crypted;
 }
 
-function decrypt(value:any) {
+function decrypt(value: any) {
     var config = new Config();
 
     var decipher = crypto.createDecipher(config.algorithm, config.secret);
