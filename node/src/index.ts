@@ -11,12 +11,13 @@ class Server {
 
     /**
      * cstor
-     * 
+     *  
      * @class Server
      * @constructor
      */
     constructor() {
         this.app = express();
         this.config = new Config();
+        var tmp = new Config();
     }
 }
