@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.14.0"
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
   },
   "devDependencies": {
     "@types/body-parser": "0.0.33",
@@ -17,7 +19,6 @@
     "@types/node": "^6.0.57",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "morgan": "^1.7.0",
     "supertest": "^2.0.1"
   }
 }

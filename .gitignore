@@ -3,7 +3,7 @@
 # compiled output
 /dist
 /tmp
-**/*.js
+/dist/**/*.js
 **/*.map
 
 # dependencies
