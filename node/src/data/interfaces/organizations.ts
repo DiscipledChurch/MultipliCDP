@@ -12,3 +12,10 @@ export class Organization {
     phoneNumbers: PhoneNumber[];
     locations: Location[];
 }
+
+export interface IOrganization {
+    save(organization: Organization): number;
+    delete(id: number): void;
+    get(id: number): Organization;
+    getAll(): Organization[];
+ }
