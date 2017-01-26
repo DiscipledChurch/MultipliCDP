@@ -20,6 +20,7 @@
     "gulp-sourcemaps": "^2.4.0",
     "gulp-tslint": "^7.0.1",
     "gulp-typescript": "^3.1.4",
+    "gulp-wait": "0.0.2",
     "ts-helpers": "^1.1.2",
     "tslint": "^4.2.0",
     "typescript": "^2.1.4"

@@ -5,6 +5,7 @@ var mocha = require('gulp-mocha');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var tslint = require('gulp-tslint');
+var wait = require('gulp-wait');
 
 // Clean 'dist' folder
 gulp.task('clean', () => {
@@ -52,6 +53,7 @@ gulp.task('node-dependencies', () => {
 // Unit test node
 gulp.task('node-test', () => {
     return gulp.src('./node/test/**/*.spec.js')
+        .pipe(wait(10000))
         .pipe(mocha());
 });
 
