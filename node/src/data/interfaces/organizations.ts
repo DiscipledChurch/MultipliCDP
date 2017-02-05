@@ -14,8 +14,8 @@ export class Organization {
 }
 
 export interface IOrganization {
-    save(organization: Organization): number;
-    delete(id: number): void;
-    get(id: number): Organization;
-    getAll(): Organization[];
+    save(organization: Organization): Promise<any>;
+    delete(id: number): Promise<any>;
+    get(id: number): Promise<Organization>;
+    getAll(): Promise<Organization[]>;
  }

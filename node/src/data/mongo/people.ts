@@ -1,4 +1,4 @@
-import { IPeople, Person } from './interfaces/people';
+import { IPeople, Person } from '../interfaces/people';
 
 class People implements IPeople {
     constructor() {}
