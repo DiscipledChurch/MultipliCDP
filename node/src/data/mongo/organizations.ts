@@ -21,7 +21,7 @@ class Organizations implements IOrganization {
 
     public delete(id: number): Promise<any> {
         return new Promise<any>((resolve, reject) => {
-            OrganizationsDB.findByIdAndRemove(id, (err, org) => {
+            OrganizationsDB.findByIdAndRemove(id, (err) => {
                 if (err) reject(err);
 
                 resolve();
