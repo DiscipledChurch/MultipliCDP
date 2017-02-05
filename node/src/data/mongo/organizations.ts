@@ -21,14 +21,11 @@ class Organizations implements IOrganization {
 
     public delete(id: number): Promise<any> {
         return new Promise<any>((resolve, reject) => {
-            OrganizationsDB.findByIdAndRemove(id)
-                .exec()
-                .then((org) => {
-                    resolve();
-                })
-                .catch((err) => {
-                    reject(err);
-                });
+            OrganizationsDB.findByIdAndRemove(id, (err, org) => {
+                if (err) reject(err);
+
+                resolve();
+            });
         });
     }
 
