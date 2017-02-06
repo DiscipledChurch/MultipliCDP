@@ -1,4 +1,4 @@
-import mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 import Schema = mongoose.Schema;
 
 import { Organization } from '../../interfaces/organizations';

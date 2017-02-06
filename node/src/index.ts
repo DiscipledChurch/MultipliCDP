@@ -1,13 +1,13 @@
-import express = require('express');
-import morgan = require('morgan');
-import path = require('path');
-import bodyParser = require('body-parser');
+import * as express from 'express';
+import * as morgan from 'morgan';
+import * as path from 'path';
+import * as bodyParser from 'body-parser';
 
 import Config from './config';
+import { OrganizationsController } from './controllers';
 
-
-var app = express();
-var config = new Config();
+const app: express.Application = express();
+let config = new Config();
 
 // use body parser to grab information from POST requests
 app.use(bodyParser.urlencoded({ extended : true }));
@@ -38,11 +38,16 @@ app.use('/', authRoutes);
 var apiRoutes = require('./app/routes/api/index')(app, express);
 app.use('/api', apiRoutes); 
 */
+
+app.use('/organizations', OrganizationsController);
+
 // route for index.html
 app.get('/', function(req, res) {
     //res.sendFile(path.join(__dirname, '/../dist/index.html'));
     res.sendStatus(200);
 });
+
+
 
 // connect to database
 //mongoose.Promise = global.Promise;
