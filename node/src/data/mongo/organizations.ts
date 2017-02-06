@@ -1,9 +1,9 @@
 import * as mongoose from 'mongoose';
 
 import { IOrganization, Organization } from '../interfaces/organizations';
-import OrganizationsDB = require('./schemas/organizations');
+import { OrganizationsDB } from './schemas/organizations';
 
-class Organizations implements IOrganization {
+export class Organizations implements IOrganization {
     constructor() { }
 
     public save(organization: Organization): Promise<any> {

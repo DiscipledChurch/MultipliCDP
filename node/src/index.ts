@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as bodyParser from 'body-parser';
 
 import Config from './config';
-import { OrganizationsController } from './controllers';
+import { ApiRoutesController } from './controllers/api';
 
 const app: express.Application = express();
 let config = new Config();
@@ -39,7 +39,7 @@ var apiRoutes = require('./app/routes/api/index')(app, express);
 app.use('/api', apiRoutes); 
 */
 
-app.use('/organizations', OrganizationsController);
+app.use('/api', ApiRoutesController);
 
 // route for index.html
 app.get('/', function(req, res) {

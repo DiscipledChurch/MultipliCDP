@@ -11,6 +11,16 @@ export class Organization {
     addresses: Address[];
     phoneNumbers: PhoneNumber[];
     locations: Location[];
+
+    constructor(
+        name: string,
+        hostname: string
+    ) {
+        this.name = name;
+        this.hostname = hostname;
+        this.isAuthorized = false;
+        this.createdDate = new Date();
+    }
 }
 
 export interface IOrganization {
@@ -18,4 +28,4 @@ export interface IOrganization {
     delete(id: number): Promise<any>;
     get(id: number): Promise<Organization>;
     getAll(): Promise<Organization[]>;
- }
+}

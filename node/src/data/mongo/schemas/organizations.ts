@@ -43,4 +43,4 @@ OrganizationSchema.methods.convertFromSchema = function() {
         return org;
 }
 
-export = mongoose.model<IOrganizationSchema>('OrganizationModel', OrganizationSchema);
+export const OrganizationsDB = mongoose.model<IOrganizationSchema>('OrganizationsDB', OrganizationSchema);
