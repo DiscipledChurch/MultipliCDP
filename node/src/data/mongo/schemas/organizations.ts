@@ -36,7 +36,7 @@ OrganizationSchema.methods.convertToSchema = function(org: Organization) {
 }
 
 OrganizationSchema.methods.convertFromSchema = function() {
-        var org = new Organization();
+        var org = new Organization(this.name, this.hostname);
         var orgSchema = this;
 
         MongoHelper.convert<Schema, Organization>(orgSchema, org);
