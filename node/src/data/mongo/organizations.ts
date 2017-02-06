@@ -11,11 +11,19 @@ export class Organizations implements IOrganization {
         org.convertToSchema(organization);
 
         return new Promise<any>((resolve, reject) => {
+            if (!!org._id) {
             org.save((err) => {
                 if (err) reject(err);
 
                 resolve(1);
             });
+            } else {
+                OrganizationsDB.findByIdAndUpdate(org._id, org, (err => {
+                    if (err) reject(err);
+
+                    resolve(1);
+                }));                
+            }
         });
     }
 
