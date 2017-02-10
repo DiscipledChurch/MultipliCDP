@@ -54,7 +54,11 @@ gulp.task('node-dependencies', () => {
 gulp.task('node-test', () => {
     return gulp.src('./node/test/**/*.spec.js')
         .pipe(wait(10000))
-        .pipe(mocha());
+        .pipe(mocha({
+            require: [
+                './node/test.bootstrap'
+            ]
+        }));
 });
 
 // Build and unit test all node files
