@@ -1,20 +1,20 @@
 var request = require('supertest');
 var expect = require('chai').expect;
 
-describe('loading express', () => {
+describe('loading express', function() {
     var server;
 
-    beforeEach((done) => {
-        delete require.cache[require.resolve(process.env.PROJECT_HOME + 'dist/node/index')];
+    beforeEach(function(done) {
+        delete require.cache[require.resolve(process.env.PROJECT_HOME + '/dist/node/index')];
         server = require(process.env.PROJECT_HOME + '/dist/node/index');
         done();
     });
 
-    afterEach((done) => {
+    afterEach(function(done) {
         server.close(done);
     });
 
-    it('responds to /', (done) => {
+    it('responds to /', function(done) {
         request(server).get('/')
             .expect(200, (err, resp) => {
                 expect(resp.header['content-type']).to.equal('text/plain; charset=utf-8');
@@ -25,7 +25,7 @@ describe('loading express', () => {
             });
     });
 
-    it('returns 404', (done) => {
+    it('returns 404', function(done) {
         request(server).get('/foo').expect(404, done);
     });
 });
