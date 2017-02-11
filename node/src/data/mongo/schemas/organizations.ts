@@ -21,12 +21,20 @@ var OrganizationSchema = new mongoose.Schema({
         type: String
     },
     isAuthorized: {
-        type: String,
+        type: Boolean,
         required: true
     },
     createdDate: {
-        type: String,
+        type: Date,
         required: true
+    },
+    isDeleted: {
+        type: Boolean,
+        required: true
+    },
+    deletedDate: {
+        type: Date,
+        required: false
     }
 });
 

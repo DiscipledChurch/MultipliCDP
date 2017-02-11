@@ -37,7 +37,7 @@ export class Organizations implements IOrganization {
         });
     }
 
-    public get(id: number): Promise<Organization> {
+    public get(id: number, includeInactive: boolean): Promise<Organization> {
         return new Promise<Organization>((resolve, reject) => {
             OrganizationsDB.findById(id, (err, org) => {
                 if (err) reject(err);
@@ -47,7 +47,7 @@ export class Organizations implements IOrganization {
         });
     }
 
-    public getAll(): Promise<Organization[]> {
+    public getAll(includeInactive: boolean): Promise<Organization[]> {
         return new Promise<Organization[]>((resolve, reject) => {
             OrganizationsDB.find({}, (err, orgModels) => {
                 if (err) reject(err);

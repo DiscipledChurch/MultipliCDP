@@ -8,8 +8,9 @@ const router: Router = Router();
 router.route('/')
 
     .get((req: Request, res: Response) => {
+        console.log(req.body.includeDeleted);
         let orgs = new Organizations();
-        orgs.getAll()
+        orgs.getAll(true)
             .then((_resp) => {
                 res.json(_resp);
             })
@@ -36,7 +37,7 @@ router.route('/:id')
 
     .get((req: Request, res: Response) => {
         let orgs = new Organizations();
-        orgs.get(req.params.id)
+        orgs.get(req.params.id, req.body.includeDeleted)
             .then((_resp) => {
                 res.send(_resp);
             })

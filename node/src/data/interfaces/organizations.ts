@@ -8,6 +8,8 @@ export class Organization {
     customUrl: string;
     isAuthorized: boolean;
     createdDate: Date;
+    isDeleted: boolean;
+    deletedDate: Date;
     addresses: Address[];
     phoneNumbers: PhoneNumber[];
     locations: Location[];
@@ -26,6 +28,6 @@ export class Organization {
 export interface IOrganization {
     save(organization: Organization): Promise<any>;
     delete(id: number): Promise<any>;
-    get(id: number): Promise<Organization>;
-    getAll(): Promise<Organization[]>;
+    get(id: number, includeInactive: boolean): Promise<Organization>;
+    getAll(includeInactive: boolean): Promise<Organization[]>;
 }
