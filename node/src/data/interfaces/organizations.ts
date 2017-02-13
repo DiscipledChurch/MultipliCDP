@@ -3,6 +3,7 @@ import { PhoneNumber } from './phoneNumbers';
 import { Location } from './locations';
 
 export class Organization {
+    _id?: string;
     name: string;
     hostname: string;
     customUrl: string;

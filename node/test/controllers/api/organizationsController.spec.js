@@ -2,15 +2,16 @@ var expect = require('chai').expect;
 var sinon = require('sinon');
 var request = require('supertest');
 var clone = require('clone');
+var Organization = require(process.env.PROJECT_HOME + '/dist/node/data/interfaces/organizations').Organization;
 var Organizations = require(process.env.PROJECT_HOME + '/dist/node/data/mongo/organizations');
 var api = require(process.env.PROJECT_HOME + '/dist/node/controllers/api/index');
 
 
-describe('API: organizations', function() {
+describe('API: organizations', function () {
     var server;
     var orgsStub;
 
-    before(function() {
+    before(function () {
         orgsStub = [
             {
                 _id: 1,
@@ -31,51 +32,37 @@ describe('API: organizations', function() {
                 deletedDate: new Date()
             }
         ];
-
-
-
-        saveStub = sinon.stub(Organizations.Organizations.prototype, 'save', (org) => {
-
-        });
-
-
     });
 
-    after(function() {
-        saveStub.restore();
-    });
-
-    beforeEach(function(done) {
+    beforeEach(function (done) {
         delete require.cache[require.resolve(process.env.PROJECT_HOME + '/dist/node/index')];
         server = require(process.env.PROJECT_HOME + '/dist/node/index');
         done();
     });
 
-    afterEach(function(done) {
+    afterEach(function (done) {
         server.close(done);
     });
 
-    describe('GET /api/organizations', function() {
+    describe('GET /api/organizations', function () {
         var getAllStub;
 
-        before(function() {
+        before(function () {
             getAllStub = sinon.stub(Organizations.Organizations.prototype, 'getAll', (includeInactive) => {
                 return new Promise((resolve, reject) => {
                     if (includeInactive)
                         resolve(orgsStub);
                     else
-                        resolve(orgsStub.filter((org) => {
-                            return org.isDeleted == false;
-                        }));
+                        resolve(orgsStub.filter(org => !org.isDeleted));
                 })
             });
         });
 
-        after(function() {
+        after(function () {
             getAllStub.restore();
         });
 
-        it('should return a list of all organizations', function(done) {
+        it('should return a list of all organizations', function (done) {
             request(server).get('/api/organizations')
                 .send({
                     includeDeleted: true
@@ -90,7 +77,7 @@ describe('API: organizations', function() {
                 });
         });
 
-        it('should only return a list of undeleted organizations', function(done) {
+        it('should only return a list of non-deleted organizations', function (done) {
             request(server).get('/api/organizations')
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.not.be.empty;
@@ -103,10 +90,10 @@ describe('API: organizations', function() {
         });
     });
 
-    describe('GET /api/organizations/:id', function() {
+    describe('GET /api/organizations/:id', function () {
         var getStub;
 
-        before(function() {
+        before(function () {
             getStub = sinon.stub(Organizations.Organizations.prototype, 'get', (id, includeInactive) => {
                 return new Promise((resolve, reject) => {
                     resolve(orgsStub.filter((org) => {
@@ -119,11 +106,11 @@ describe('API: organizations', function() {
             });
         });
 
-        after(function() {
+        after(function () {
             getStub.restore();
         });
 
-        it('should return the organization with id of 1', function(done) {
+        it('should return the organization with id of 1', function (done) {
             request(server).get('/api/organizations/1')
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.not.be.empty;
@@ -135,7 +122,7 @@ describe('API: organizations', function() {
                 });
         });
 
-        it('should return the deleted organization with id of 2', function(done) {
+        it('should return the deleted organization with id of 2', function (done) {
             request(server).get('/api/organizations/2')
                 .send({
                     includeDeleted: true
@@ -150,7 +137,7 @@ describe('API: organizations', function() {
                 });
         });
 
-        it('should not return any organization', function(done) {
+        it('should not return any organization', function (done) {
             request(server).get('/api/organizations/2')
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.be.empty;
@@ -159,25 +146,120 @@ describe('API: organizations', function() {
         });
     });
 
-    xdescribe('POST /api/organizations', function() {
+    /*
+    describe('POST /api/organizations', function () {
+        var postStub;
+        var copyStub;
+
+        before(function () {
+            copyStub = clone(orgsStub);
+            postsStub = sinon.stub(Organizations.Organizations.prototype, 'save', (org) => {
+                var ids = copyStub.map(o => o._id);
+                org._id = (Math.max(...ids)) + 1;
+                copyStub.push(_org);
+
+                return new Promise((resolve, reject) => {
+                    resolve(org);
+                });
+            });
+        });
+
+        after(function () {
+            postStub.restore();
+        });
+
+        it('should save a new organization', function (done) {
+            var org = new Organization('new org', 'neworg');
+            request(server).post('/api/organizations')
+                .send(org)
+                .expect(200, (err, resp) => {
+                    expect(resp.body).to.not.be.empty;
+
+                    var newOrg = resp.body;
+                    expect(newOrg._id).to.equal(3);
+                    expect(newOrg.name).to.equal('new org');
+                    expect(copyStub).to.have.lengthOf(3);
+                    done();
+                });
+        });
+    });
+    */
+
+    describe('PUT /api/organizations/:id', function () {
+        var putStub;
+        var copyStub;
+
+        before(function () {
+            copyStub = clone(orgsStub);
+            putStub = sinon.stub(Organizations.Organizations.prototype, 'save', (org) => {
+                return new Promise((resolve, reject) => {
+                    var orgIndex = copyStub.findIndex((o) => {
+                        return o._id == org._id && !o.isDeleted;
+                    });
+
+                    if (orgIndex < 0) 
+                        reject({ _id: -1 });
+                    else {
+                        copyStub[orgIndex] = clone(org);
+                        resolve({ _id: Number(org._id) });
+                    }
+                });
+            });
+        });
+
+        after(function () {
+            putStub.restore();
+        });
+
+        it('should update a pre-existing organization', function (done) {
+            var org = new Organization('updated Org', 'updatedOrg');
+            request(server).put('/api/organizations/1')
+                .send(org)
+                .expect(200, (err, resp) => {
+                    expect(resp.body).to.not.be.empty;
+
+                    expect(resp.body._id).to.equal(1);
+                    expect(copyStub).to.have.lengthOf(2);
+                    expect(copyStub.find(o => o._id == resp.body._id).name).to.equal('updated Org');
+                    done();
+                });
+        });
+
+        it('should not update a non-existent organization', function (done) {
+            var org = new Organization('updated Org', 'updatedOrg');
+            request(server).put('/api/organizations/3')
+                .send(org)
+                .expect(200, (err, resp) => {
+                    expect(resp.body).to.not.be.empty;
+                    expect(resp.body._id).to.equal(-1);
+                    done();
+                });
+        });
+
+        it('should not update a deleted organization', function (done) {
+            var org = new Organization('updated Org', 'updatedOrg');
+            request(server).put('/api/organizations/2')
+                .send(org)
+                .expect(200, (err, resp) => {
+                    expect(resp.body).to.not.be.empty;
+                    expect(resp.body._id).to.equal(-1);
+                    done();
+                });
+
+        });
 
     });
 
-    xdescribe('PUT /api/organizations/:id', function() {
-
-    });
-
-    describe('DELETE /api/organizations', function() {
+    describe('DELETE /api/organizations', function () {
         var deleteStub;
         var copyStub;
 
-        before(function() {
+        before(function () {
             copyStub = clone(orgsStub);
             deleteStub = sinon.stub(Organizations.Organizations.prototype, 'delete', (id) => {
                 var orgs = copyStub.filter((org) => {
                     return org._id == id && org.isDeleted == false;
                 });
-                
                 orgs.forEach((org) => { org.isDeleted = true; });
 
                 return new Promise((resolve, reject) => {
@@ -189,11 +271,11 @@ describe('API: organizations', function() {
             });
         });
 
-        after(function() {
+        after(function () {
             deleteStub.restore();
         });
 
-        it('should delete an active organization', function(done) {
+        it('should delete an active organization', function (done) {
             request(server).delete('/api/organizations/1')
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.not.be.empty;
@@ -206,7 +288,7 @@ describe('API: organizations', function() {
                 });
         });
 
-        it('should not delete an already deleted organization', function(done) {
+        it('should not delete an already deleted organization', function (done) {
             request(server).delete('/api/organizations/2')
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.be.empty;
@@ -214,7 +296,7 @@ describe('API: organizations', function() {
                 });
         });
 
-        it('should not delete a non-existent organization', function(done) {
+        it('should not delete a non-existent organization', function (done) {
             request(server).delete('/api/organizations/3')
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.be.empty;

@@ -5,6 +5,7 @@ import { Organization } from '../../interfaces/organizations';
 import MongoHelper from '../mongoHelper';
 
 interface IOrganizationSchema extends Organization, mongoose.Document {
+    _id: string,
     convertToSchema: (org: Organization) => void,
     convertFromSchema: () => Organization
 }

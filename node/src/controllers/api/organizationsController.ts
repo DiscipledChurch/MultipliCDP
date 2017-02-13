@@ -8,9 +8,8 @@ const router: Router = Router();
 router.route('/')
 
     .get((req: Request, res: Response) => {
-        console.log(req.body.includeDeleted);
         let orgs = new Organizations();
-        orgs.getAll(true)
+        orgs.getAll(req.body.includeDeleted)
             .then((_resp) => {
                 res.json(_resp);
             })
@@ -49,10 +48,11 @@ router.route('/:id')
     .put((req: Request, res: Response) => {
         let orgs = new Organizations();
         let org = new Organization(req.body.name, req.body.hostname);
+        org._id = req.params.id;
 
         orgs.save(org)
             .then((_resp) => {
-                res.json(_resp);
+                res.send(_resp);
             })
             .catch((_err) => {
                 res.send(_err);
