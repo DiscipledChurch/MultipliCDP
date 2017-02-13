@@ -146,25 +146,27 @@ describe('API: organizations', function () {
         });
     });
 
-    /*
     describe('POST /api/organizations', function () {
         var postStub;
         var copyStub;
 
-        before(function () {
+        beforeEach(function () {
             copyStub = clone(orgsStub);
-            postsStub = sinon.stub(Organizations.Organizations.prototype, 'save', (org) => {
-                var ids = copyStub.map(o => o._id);
-                org._id = (Math.max(...ids)) + 1;
-                copyStub.push(_org);
-
+            postStub = sinon.stub(Organizations.Organizations.prototype, 'save', (org) => {
                 return new Promise((resolve, reject) => {
+                    var maxId = copyStub.reduce((a, b) => {
+                        return Math.max(a._id, b._id);
+                    });
+
+                    org._id = maxId + 1;
+                    copyStub.push(org);
+
                     resolve(org);
                 });
             });
         });
 
-        after(function () {
+        afterEach(function () {
             postStub.restore();
         });
 
@@ -182,8 +184,22 @@ describe('API: organizations', function () {
                     done();
                 });
         });
+
+        it('should throw an error when supplying an id', function (done) {
+            var org = new Organization('new org', 'neworg');
+            org._id = 1;
+
+            request(server).post('/api/organizations')
+                .send(org)
+                .expect(200, (err, resp) => {
+                    expect(resp.body).to.not.be.empty;
+
+                    expect(resp.body.error).to.equal('Id cannot be supplied.');
+                    expect(copyStub).to.have.lengthOf(2);
+                    done();
+                });
+        });
     });
-    */
 
     describe('PUT /api/organizations/:id', function () {
         var putStub;
@@ -197,7 +213,7 @@ describe('API: organizations', function () {
                         return o._id == org._id && !o.isDeleted;
                     });
 
-                    if (orgIndex < 0) 
+                    if (orgIndex < 0)
                         reject({ _id: -1 });
                     else {
                         copyStub[orgIndex] = clone(org);
@@ -213,6 +229,8 @@ describe('API: organizations', function () {
 
         it('should update a pre-existing organization', function (done) {
             var org = new Organization('updated Org', 'updatedOrg');
+            org._id = 1;
+
             request(server).put('/api/organizations/1')
                 .send(org)
                 .expect(200, (err, resp) => {
@@ -227,6 +245,8 @@ describe('API: organizations', function () {
 
         it('should not update a non-existent organization', function (done) {
             var org = new Organization('updated Org', 'updatedOrg');
+            org._id = 3;
+            
             request(server).put('/api/organizations/3')
                 .send(org)
                 .expect(200, (err, resp) => {
@@ -238,6 +258,8 @@ describe('API: organizations', function () {
 
         it('should not update a deleted organization', function (done) {
             var org = new Organization('updated Org', 'updatedOrg');
+            org._id = 2;
+            
             request(server).put('/api/organizations/2')
                 .send(org)
                 .expect(200, (err, resp) => {
@@ -245,7 +267,19 @@ describe('API: organizations', function () {
                     expect(resp.body._id).to.equal(-1);
                     done();
                 });
+        });
 
+        it('should have matching ids', function(done) {
+            var org = new Organization('updated Org', 'updatedOrg');
+            org._id = 2;
+            
+            request(server).put('/api/organizations/3')
+                .send(org)
+                .expect(200, (err, resp) => {
+                    expect(resp.body).to.not.be.empty;
+                    expect(resp.body.error).to.equal("Id's must match.");
+                    done();
+                });
         });
 
     });

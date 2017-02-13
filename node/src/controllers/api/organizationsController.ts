@@ -20,15 +20,18 @@ router.route('/')
 
     .post((req: Request, res: Response) => {
         let orgs = new Organizations();
-        let org = new Organization(req.body.name, req.body.hostname);
-
-        orgs.save(org)
-            .then((_resp) => {
-                res.json(_resp);
-            })
-            .catch((_err) => {
-                res.send(_err);
-            });
+        let org = req.body;
+        
+        if (org._id != undefined && org._id != null)
+            res.send({error: "Id cannot be supplied."});
+        else 
+            orgs.save(org)
+                .then((_resp) => {
+                    res.json(_resp);
+                })
+                .catch((_err) => {
+                    res.send(_err);
+                });
     });
 
 // /api/organizations/:id
@@ -47,16 +50,18 @@ router.route('/:id')
 
     .put((req: Request, res: Response) => {
         let orgs = new Organizations();
-        let org = new Organization(req.body.name, req.body.hostname);
-        org._id = req.params.id;
+        let org = req.body;
 
-        orgs.save(org)
-            .then((_resp) => {
-                res.send(_resp);
-            })
-            .catch((_err) => {
-                res.send(_err);
-            });
+        if (org._id != req.params.id)
+            res.send({error: "Id's must match."});
+        else
+            orgs.save(org)
+                .then((_resp) => {
+                    res.send(_resp);
+                })
+                .catch((_err) => {
+                    res.send(_err);
+                });
     })
 
     .delete((req: Request, res: Response) => {
