@@ -16,8 +16,8 @@ export class Organization {
     locations: Location[];
 
     constructor(
-        name: string,
-        hostname: string
+        name?: string,
+        hostname?: string
     ) {
         this.name = name;
         this.hostname = hostname;

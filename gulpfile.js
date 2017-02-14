@@ -1,7 +1,7 @@
 var del = require('del');
 var gulp = require('gulp');
 var install = require('gulp-install');
-var mocha = require('gulp-mocha');
+var mocha = require('gulp-spawn-mocha/lib');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var tslint = require('gulp-tslint');
@@ -55,9 +55,7 @@ gulp.task('node-test', () => {
     return gulp.src('./node/test/**/*.spec.js')
         .pipe(wait(10000))
         .pipe(mocha({
-            require: [
-                './node/test.bootstrap'
-            ]
+            r: './node/test.bootstrap'
         }));
 });
 

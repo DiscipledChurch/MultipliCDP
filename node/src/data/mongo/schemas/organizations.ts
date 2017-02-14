@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import Schema = mongoose.Schema;
 
 import { Organization } from '../../interfaces/organizations';
-import MongoHelper from '../mongoHelper';
+import { MongoHelper, Connection } from '../mongoHelper';
 
 interface IOrganizationSchema extends Organization, mongoose.Document {
     _id: string,
@@ -10,7 +10,7 @@ interface IOrganizationSchema extends Organization, mongoose.Document {
     convertFromSchema: () => Organization
 }
 
-var OrganizationSchema = new mongoose.Schema({
+var OrganizationSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -39,17 +39,15 @@ var OrganizationSchema = new mongoose.Schema({
     }
 });
 
-OrganizationSchema.methods.convertToSchema = function(org: Organization) {
-        var orgSchema = this;
-        MongoHelper.convert<Organization, Schema>(org, orgSchema);
+OrganizationSchema.methods.convertToSchema = function (org: Organization) {
+    var orgSchema = this;
+    MongoHelper.convert<Organization, Schema>(org);
 }
 
-OrganizationSchema.methods.convertFromSchema = function() {
-        var org = new Organization(this.name, this.hostname);
-        var orgSchema = this;
+OrganizationSchema.methods.convertFromSchema = function () {
+    var orgSchema = this;
 
-        MongoHelper.convert<Schema, Organization>(orgSchema, org);
-        return org;
+    return MongoHelper.convert<Schema, Organization>(orgSchema);
 }
 
-export const OrganizationsDB = mongoose.model<IOrganizationSchema>('OrganizationsDB', OrganizationSchema);
+export const OrganizationsDB = mongoose.model<IOrganizationSchema>('Organization', OrganizationSchema);

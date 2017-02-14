@@ -12,17 +12,17 @@ export class Organizations implements IOrganization {
 
         return new Promise<any>((resolve, reject) => {
             if (!!org._id) {
-            org.save((err) => {
-                if (err) reject(err);
+                org.save((err) => {
+                    if (err) reject(err);
 
-                resolve(1);
-            });
+                    resolve(1);
+                });
             } else {
                 OrganizationsDB.findByIdAndUpdate(org._id, org, (err => {
                     if (err) reject(err);
 
                     resolve(1);
-                }));                
+                }));
             }
         });
     }
@@ -49,7 +49,8 @@ export class Organizations implements IOrganization {
 
     public getAll(includeInactive: boolean): Promise<Organization[]> {
         return new Promise<Organization[]>((resolve, reject) => {
-            OrganizationsDB.find({}, (err, orgModels) => {
+            var filter = includeInactive ? {} : { 'isDeleted' : false };
+            OrganizationsDB.find(filter, (err, orgModels) => {
                 if (err) reject(err);
 
                 let orgs = orgModels.map<Organization>((org) => { return org.convertFromSchema(); });
