@@ -11,45 +11,66 @@ export class Organizations implements IOrganization {
         org.convertToSchema(organization);
 
         return new Promise<any>((resolve, reject) => {
-            if (!!org._id) {
-                org.save((err) => {
+            if (org._id == null && org._id == undefined) {
+                org.save((err, result) => {
                     if (err) reject(err);
 
-                    resolve(1);
+                    resolve(result);
                 });
             } else {
-                OrganizationsDB.findByIdAndUpdate(org._id, org, (err => {
+                OrganizationsDB.findById(org._id, ((err, found) => {
                     if (err) reject(err);
+                    else if (found == null) reject({ error: 'Entity not found.' });
+                    else if (found.isDeleted) reject({ error: 'Entity is deleted.' });
+                    else
+                        org.save((err, result) => {
+                            if (err) reject(err);
 
-                    resolve(1);
+                            resolve(true);
+                        });
                 }));
             }
         });
     }
 
-    public delete(id: number): Promise<any> {
+    public delete(id: string): Promise<any> {
         return new Promise<any>((resolve, reject) => {
-            OrganizationsDB.findByIdAndRemove(id, (err) => {
+            OrganizationsDB.findById(id, ((err, org) => {
                 if (err) reject(err);
+                else if (org == null) reject({ error: 'Entity not found.' });
+                else if (org.isDeleted) reject({ error: 'Entity is deleted.' });
+                else {
+                    org.isDeleted = true;
+                    org.save((err, result) => {
+                        if (err) reject(err);
 
-                resolve();
-            });
+                        resolve(true);
+                    });
+                }
+            }));
         });
     }
 
-    public get(id: number, includeInactive: boolean): Promise<Organization> {
+    public get(id: string, includeInactive: boolean): Promise<Organization> {
         return new Promise<Organization>((resolve, reject) => {
-            OrganizationsDB.findById(id, (err, org) => {
+            var filter = includeInactive ? { '_id': id } : { '_id': id, 'isDeleted': false };
+            OrganizationsDB.find(filter, (err, orgs) => {
                 if (err) reject(err);
 
-                resolve(org.convertFromSchema());
+                if (orgs.length == 0)
+                    resolve();
+                else if (orgs.length == 1)
+                    resolve(orgs[0]);
+                //resolve(orgs[0].convertFromSchema());
+                else
+                    reject('Too many entities returned.');
             });
         });
     }
 
     public getAll(includeInactive: boolean): Promise<Organization[]> {
         return new Promise<Organization[]>((resolve, reject) => {
-            var filter = includeInactive ? {} : { 'isDeleted' : false };
+            var filter = includeInactive ? {} : { 'isDeleted': false };
             OrganizationsDB.find(filter, (err, orgModels) => {
                 if (err) reject(err);
 

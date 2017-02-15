@@ -11,6 +11,10 @@ interface IOrganizationSchema extends Organization, mongoose.Document {
 }
 
 var OrganizationSchema = new Schema({
+    _id: {
+        type: Schema.Types.ObjectId,
+        auto: false
+    },
     name: {
         type: String,
         required: true
@@ -37,17 +41,28 @@ var OrganizationSchema = new Schema({
         type: Date,
         required: false
     }
-});
+},{ _id : false });
 
 OrganizationSchema.methods.convertToSchema = function (org: Organization) {
     var orgSchema = this;
-    MongoHelper.convert<Organization, Schema>(org);
-}
+    MongoHelper.convert(org, orgSchema);
+};
 
 OrganizationSchema.methods.convertFromSchema = function () {
     var orgSchema = this;
+    var org = new Organization();
 
-    return MongoHelper.convert<Schema, Organization>(orgSchema);
-}
+    MongoHelper.convert(orgSchema, org);
+
+    return org;
+};
+
+OrganizationSchema.pre('save', function(next) {
+    var org = this;
+    if (org._id == null || org._id == undefined) 
+        org._id = mongoose.Types.ObjectId();
+
+    next();
+});
 
 export const OrganizationsDB = mongoose.model<IOrganizationSchema>('Organization', OrganizationSchema);

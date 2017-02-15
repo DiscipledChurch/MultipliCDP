@@ -23,12 +23,13 @@ export class Organization {
         this.hostname = hostname;
         this.isAuthorized = false;
         this.createdDate = new Date();
+        this.isDeleted = false;
     }
 }
 
 export interface IOrganization {
     save(organization: Organization): Promise<any>;
-    delete(id: number): Promise<any>;
-    get(id: number, includeInactive: boolean): Promise<Organization>;
+    delete(id: any): Promise<any>;
+    get(id: any, includeInactive: boolean): Promise<Organization>;
     getAll(includeInactive: boolean): Promise<Organization[]>;
 }

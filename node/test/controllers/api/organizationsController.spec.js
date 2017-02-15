@@ -214,10 +214,10 @@ describe('API: organizations', function () {
                     });
 
                     if (orgIndex < 0)
-                        reject({ _id: -1 });
+                        reject({ error: 'Entity not found.' });
                     else {
                         copyStub[orgIndex] = clone(org);
-                        resolve({ _id: Number(org._id) });
+                        resolve(true);
                     }
                 });
             });
@@ -236,9 +236,9 @@ describe('API: organizations', function () {
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.not.be.empty;
 
-                    expect(resp.body._id).to.equal(1);
+                    expect(resp.body).to.be.true;
                     expect(copyStub).to.have.lengthOf(2);
-                    expect(copyStub.find(o => o._id == resp.body._id).name).to.equal('updated Org');
+                    expect(copyStub.find(o => o._id == 1).name).to.equal('updated Org');
                     done();
                 });
         });
@@ -251,7 +251,7 @@ describe('API: organizations', function () {
                 .send(org)
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.not.be.empty;
-                    expect(resp.body._id).to.equal(-1);
+                    expect(resp.body.error).to.equal('Entity not found.');
                     done();
                 });
         });
@@ -264,7 +264,7 @@ describe('API: organizations', function () {
                 .send(org)
                 .expect(200, (err, resp) => {
                     expect(resp.body).to.not.be.empty;
-                    expect(resp.body._id).to.equal(-1);
+                    expect(resp.body.error).to.equal('Entity not found.');
                     done();
                 });
         });

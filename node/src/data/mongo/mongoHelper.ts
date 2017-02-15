@@ -9,9 +9,14 @@ export const Connection = connection;
 
 export class MongoHelper {
 
-    public static convert<T, U>(from: T) : U {
-        var tmp: U;
-        return tmp;
+    public static convert(from: any, to: any) : any {
+        for (var property in from) {
+            if (from.hasOwnProperty(property)) {
+                to[property] = from[property];
+            }
+        }
+
+        return to;
     }
 
 }
