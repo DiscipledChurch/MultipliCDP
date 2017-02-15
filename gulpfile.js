@@ -1,11 +1,10 @@
 var del = require('del');
 var gulp = require('gulp');
 var install = require('gulp-install');
-var mocha = require('gulp-mocha');
+var mocha = require('gulp-spawn-mocha/lib');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var tslint = require('gulp-tslint');
-var wait = require('gulp-wait');
 
 // Clean 'dist' folder
 gulp.task('clean', () => {
@@ -41,20 +40,23 @@ gulp.task('node-sourcemaps', () => {
 });
 
 // Install node dependencies
-gulp.task('node-dependencies', () => {
-    return gulp.src('./node/package.json')
+gulp.task('node-dependencies', (done) => {
+    gulp.src('./node/package.json')
         .pipe(gulp.dest('./dist/node'))
         .on('end', () => {
             gulp.src(['./dist/node/package.json'])
                 .pipe(install({ production: true }));
+                
+            setTimeout(() => { done(); }, 30000);  // wait 30 secs. for dependencies to be installed
         });
 });
 
 // Unit test node
 gulp.task('node-test', () => {
     return gulp.src('./node/test/**/*.spec.js')
-        .pipe(wait(10000))
-        .pipe(mocha());
+        .pipe(mocha({
+            r: './node/test.bootstrap'
+        }));
 });
 
 // Build and unit test all node files
@@ -63,10 +65,17 @@ gulp.task('build-node', gulp.series('node-compile', 'node-sourcemaps', 'node-dep
 // Main entry point for linting
 gulp.task('lint', gulp.series('node-lint'));
 
+// Main entry point for test
+gulp.task('test', gulp.series('node-test'));
+
 // Main entry point for build
 gulp.task('build', gulp.series('clean', 'build-node'));
 
 // Entry point for watching
 gulp.task('watch', () => {
-    gulp.watch('./node/**/*.ts', gulp.series('build'));
+    gulp.watch([
+        './node/**/*.ts',
+        './node/test/**/*.js'
+    ], gulp.series('build'));
+
 });

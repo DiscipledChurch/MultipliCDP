@@ -8,7 +8,7 @@ export default class Config {
 
     constructor() {
         this.port = process.env.PORT || 8080;
-        this.mongodb = '';
+        this.mongodb = 'mongodb://testuser:CFT^6yhn@ds161495.mlab.com:61495/multiplitest';
         this.secret = 'test';
         this.algorithm = 'aes-256-ctr';
         this.host = '';

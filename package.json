@@ -1,6 +1,6 @@
 {
   "name": "multipli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "server/index.js",
   "scripts": {
@@ -16,11 +16,12 @@
     "del": "^2.2.2",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-install": "^0.6.0",
-    "gulp-mocha": "^3.0.1",
     "gulp-sourcemaps": "^2.4.0",
+    "gulp-spawn-mocha": "^3.1.0",
     "gulp-tslint": "^7.0.1",
     "gulp-typescript": "^3.1.4",
-    "gulp-wait": "0.0.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
     "ts-helpers": "^1.1.2",
     "tslint": "^4.2.0",
     "typescript": "^2.1.4"
