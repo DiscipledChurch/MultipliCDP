@@ -64,7 +64,7 @@ describe('API: organizations', function () {
 
         it('should return a list of all organizations', function (done) {
             request(server).get('/api/organizations')
-                .send({
+                .set({
                     includeDeleted: true
                 })
                 .expect(200, (err, resp) => {
@@ -124,7 +124,7 @@ describe('API: organizations', function () {
 
         it('should return the deleted organization with id of 2', function (done) {
             request(server).get('/api/organizations/2')
-                .send({
+                .set({
                     includeDeleted: true
                 })
                 .expect(200, (err, resp) => {

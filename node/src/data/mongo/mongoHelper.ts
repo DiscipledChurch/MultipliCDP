@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-import Schema = mongoose.Schema;
 import Config from '../../config';
 
 let config = new Config();
@@ -9,8 +8,8 @@ export const Connection = connection;
 
 export class MongoHelper {
 
-    public static convert(from: any, to: any) : any {
-        for (var property in from) {
+    public static convert(from: any, to: any): any {
+        for (let property in from) {
             if (from.hasOwnProperty(property)) {
                 to[property] = from[property];
             }

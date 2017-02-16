@@ -4,21 +4,21 @@ import Config from '../../config';
 
 export function encrypted(target: any, key: string) {
     // determine if running in app or under test
-    var getType = {};
-    var obj = (this.encrypted && getType.toString.call(this.encrypted) === '[object Function]') ? target : this;
+    let getType = {};
+    let obj = (this.encrypted && getType.toString.call(this.encrypted) === '[object Function]') ? target : this;
 
     // property value
-    var _val = obj[key];
+    let _val = obj[key];
 
     // property getter
-    var getter = function () {
-        //console.log(`Get: ${key} => ${_val}`);
+    let getter = function () {
+        // console.log(`Get: ${key} => ${_val}`);
         return _val;
     };
 
     // property setter
-    var setter = function (newVal: any) {
-        //console.log(`Set: ${key} => ${newVal}`);
+    let setter = function (newVal: any) {
+        // console.log(`Set: ${key} => ${newVal}`);
         _val = encrypt(newVal);
     };
 
@@ -50,25 +50,25 @@ export function encrypted(target: any, key: string) {
         return;
     }
 
-    obj.encryptedKeys.push(key)
+    obj.encryptedKeys.push(key);
 }
 
 
 function encrypt(value: any) {
-    var config = new Config();
+    let config = new Config();
 
-    var cipher = crypto.createCipher(config.algorithm, config.secret);
-    var crypted = cipher.update(value, 'utf8', 'hex');
+    let cipher = crypto.createCipher(config.algorithm, config.secret);
+    let crypted = cipher.update(value, 'utf8', 'hex');
     crypted += cipher.final('hex');
 
     return crypted;
 }
 
 function decrypt(value: any) {
-    var config = new Config();
+    let config = new Config();
 
-    var decipher = crypto.createDecipher(config.algorithm, config.secret);
-    var decrypted = decipher.update(value, 'hex', 'utf8')
+    let decipher = crypto.createDecipher(config.algorithm, config.secret);
+    let decrypted = decipher.update(value, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
     return decrypted;
 }

@@ -8,6 +8,7 @@ router.get('/', (req: Request, res: Response) => {
     res.end();
 });
 
-router.use('/organizations', OrganizationsController);
+let orgsController = new OrganizationsController();
+router.use('/organizations', orgsController.Router());
 
 export const ApiRoutesController: Router = router;

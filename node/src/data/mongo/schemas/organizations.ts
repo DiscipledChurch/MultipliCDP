@@ -5,12 +5,12 @@ import { Organization } from '../../interfaces/organizations';
 import { MongoHelper, Connection } from '../mongoHelper';
 
 interface IOrganizationSchema extends Organization, mongoose.Document {
-    _id: string,
-    convertToSchema: (org: Organization) => void,
-    convertFromSchema: () => Organization
+    _id: string;
+    convertToSchema: (org: Organization) => void;
+    convertFromSchema: () => Organization;
 }
 
-var OrganizationSchema = new Schema({
+let OrganizationSchema = new Schema({
     _id: {
         type: Schema.Types.ObjectId,
         auto: false
@@ -41,28 +41,29 @@ var OrganizationSchema = new Schema({
         type: Date,
         required: false
     }
-},{ _id : false });
+}, { _id : false });
 
 OrganizationSchema.methods.convertToSchema = function (org: Organization) {
-    var orgSchema = this;
+    let orgSchema = this;
     MongoHelper.convert(org, orgSchema);
 };
 
 OrganizationSchema.methods.convertFromSchema = function () {
-    var orgSchema = this;
-    var org = new Organization();
+    let orgSchema = this;
+    let org = new Organization();
 
-    MongoHelper.convert(orgSchema, org);
+    MongoHelper.convert(orgSchema._doc, org);
 
     return org;
 };
 
 OrganizationSchema.pre('save', function(next) {
-    var org = this;
-    if (org._id == null || org._id == undefined) 
+    let org = this;
+    if (org._id == null || org._id === undefined) {
         org._id = mongoose.Types.ObjectId();
+    }
 
     next();
 });
 
-export const OrganizationsDB = mongoose.model<IOrganizationSchema>('Organization', OrganizationSchema);
+export const OrganizationsDB = Connection.model<IOrganizationSchema>('Organization', OrganizationSchema);

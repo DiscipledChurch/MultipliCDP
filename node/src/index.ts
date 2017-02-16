@@ -43,20 +43,19 @@ app.use('/api', ApiRoutesController);
 
 // route for index.html
 app.get('/', function(req, res) {
-    //res.sendFile(path.join(__dirname, '/../dist/index.html'));
+    // res.sendFile(path.join(__dirname, '/../dist/index.html'));
     res.sendStatus(200);
 });
 
-
-
 // connect to database
-//mongoose.Promise = global.Promise;
-//mongoose.connect(config[config.repo]);
+// mongoose.Promise = global.Promise;
+// mongoose.connect(config[config.repo]);
 
 // start server
-var server = app.listen(config.port, () => {
-    if (app.get('env') === 'development')
+let server = app.listen(config.port, () => {
+    if (app.get('env') === 'development') {
         console.log('Web server listening on port %s', config.port);
+    }
 });
 
 // export for testing
